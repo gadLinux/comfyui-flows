@@ -1,0 +1,2954 @@
+{
+ "last_node_id": 37,
+ "last_link_id": 62,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "pos": [
+    60,
+    124
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "unet_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "unet_name"
+     },
+     "link": null
+    },
+    {
+     "name": "weight_dtype",
+     "type": "COMBO",
+     "widget": {
+      "name": "weight_dtype"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      1
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "widgets_values": [
+    "wan2.2_s2v_14B_fp8_scaled.safetensors",
+    "default"
+   ],
+   "title": "Wan 2.2 S2V 14B (fp8 scaled)"
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "pos": [
+    60,
+    276
+   ],
+   "size": [
+    420,
+    106
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "clip_name"
+     },
+     "link": null
+    },
+    {
+     "name": "type",
+     "type": "COMBO",
+     "widget": {
+      "name": "type"
+     },
+     "link": null
+    },
+    {
+     "name": "device",
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      3,
+      4
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+    "wan",
+    "default"
+   ],
+   "title": "Text encoder (umt5-xxl fp8)"
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    60,
+    452
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "vae_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "vae_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      10,
+      19,
+      31,
+      45
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "wan_2.1_vae.safetensors"
+   ],
+   "title": "VAE (Wan 2.1)"
+  },
+  {
+   "id": 4,
+   "type": "AudioEncoderLoader",
+   "pos": [
+    60,
+    580
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "audio_encoder_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "audio_encoder_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "AUDIO_ENCODER",
+     "type": "AUDIO_ENCODER",
+     "links": [
+      5
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "AudioEncoderLoader"
+   },
+   "widgets_values": [
+    "wav2vec2_large_english_fp16.safetensors"
+   ],
+   "title": "Audio encoder (wav2vec2 large)"
+  },
+  {
+   "id": 5,
+   "type": "LoraLoaderModelOnly",
+   "pos": [
+    60,
+    922
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    },
+    {
+     "name": "lora_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "lora_name"
+     },
+     "link": null
+    },
+    {
+     "name": "strength_model",
+     "type": "FLOAT",
+     "widget": {
+      "name": "strength_model"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      2
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoraLoaderModelOnly"
+   },
+   "widgets_values": [
+    "wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors",
+    1
+   ],
+   "title": "lightx2v 4-step LoRA (Wan 2.2 T2V high-noise v1.1)"
+  },
+  {
+   "id": 6,
+   "type": "PrimitiveStringMultiline",
+   "pos": [
+    60,
+    1288
+   ],
+   "size": [
+    520,
+    300
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "value",
+     "type": "STRING",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      50,
+      53
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveStringMultiline"
+   },
+   "widgets_values": [
+    "Character name: KAILANI\nScope: Live-action film\nArt style: photorealistic photograph, real person, natural skin texture, DSLR photo, 85mm lens, soft natural daylight, sharp focus, true-to-life colors. Not a drawing, not an illustration, not anime, not a 3D render.\nCharacter: a lean athletic surfer woman in her early twenties with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, light turquoise-blue eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white.\nVoice: a young woman in her early twenties with a bright, warm, slightly husky mid-high voice; relaxed and upbeat, laid-back surfer energy, a smile in her voice, natural conversational pace, clear articulation."
+   ],
+   "title": "CHARACTER CARD — same card as the sheet/scene flows + a Voice line"
+  },
+  {
+   "id": 7,
+   "type": "PrimitiveStringMultiline",
+   "pos": [
+    800,
+    124
+   ],
+   "size": [
+    520,
+    200
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "value",
+     "type": "STRING",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      51
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveStringMultiline"
+   },
+   "widgets_values": [
+    "Hey! I'm Kailani. Every morning I paddle out before sunrise, when the water is glassy and the beach is still asleep. Big waves? I love them. A little scary, sure, but that's the fun part!"
+   ],
+   "title": "SCRIPT — what the character says (EN ≈ 13 words / ES ≈ 10 words per 5 s chunk)"
+  },
+  {
+   "id": 8,
+   "type": "RegexExtract",
+   "pos": [
+    800,
+    394
+   ],
+   "size": [
+    520,
+    250
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "string",
+     "type": "STRING",
+     "widget": {
+      "name": "string"
+     },
+     "link": 50
+    },
+    {
+     "name": "regex_pattern",
+     "type": "STRING",
+     "widget": {
+      "name": "regex_pattern"
+     },
+     "link": null
+    },
+    {
+     "name": "mode",
+     "type": "COMBO",
+     "widget": {
+      "name": "mode"
+     },
+     "link": null
+    },
+    {
+     "name": "case_insensitive",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "case_insensitive"
+     },
+     "link": null
+    },
+    {
+     "name": "multiline",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "multiline"
+     },
+     "link": null
+    },
+    {
+     "name": "dotall",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "dotall"
+     },
+     "link": null
+    },
+    {
+     "name": "group_index",
+     "type": "INT",
+     "widget": {
+      "name": "group_index"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      52
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "RegexExtract"
+   },
+   "widgets_values": [
+    "",
+    "^[ \\t]*Voice:[ \\t]*(.+)$",
+    "First Group",
+    true,
+    true,
+    false,
+    1
+   ],
+   "title": "Voice line ← card (the text after \"Voice:\")"
+  },
+  {
+   "id": 9,
+   "type": "FB_Qwen3TTSVoiceDesign",
+   "pos": [
+    800,
+    714
+   ],
+   "size": [
+    520,
+    400
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "text",
+     "type": "STRING",
+     "widget": {
+      "name": "text"
+     },
+     "link": 51
+    },
+    {
+     "name": "instruct",
+     "type": "STRING",
+     "widget": {
+      "name": "instruct"
+     },
+     "link": 52
+    },
+    {
+     "name": "model_choice",
+     "type": "COMBO",
+     "widget": {
+      "name": "model_choice"
+     },
+     "link": null
+    },
+    {
+     "name": "device",
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     },
+     "link": null
+    },
+    {
+     "name": "precision",
+     "type": "COMBO",
+     "widget": {
+      "name": "precision"
+     },
+     "link": null
+    },
+    {
+     "name": "language",
+     "type": "COMBO",
+     "widget": {
+      "name": "language"
+     },
+     "link": null
+    },
+    {
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "name": "max_new_tokens",
+     "type": "INT",
+     "widget": {
+      "name": "max_new_tokens"
+     },
+     "link": null
+    },
+    {
+     "name": "top_p",
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    },
+    {
+     "name": "top_k",
+     "type": "INT",
+     "widget": {
+      "name": "top_k"
+     },
+     "link": null
+    },
+    {
+     "name": "temperature",
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "name": "repetition_penalty",
+     "type": "FLOAT",
+     "widget": {
+      "name": "repetition_penalty"
+     },
+     "link": null
+    },
+    {
+     "name": "attention",
+     "type": "COMBO",
+     "widget": {
+      "name": "attention"
+     },
+     "link": null
+    },
+    {
+     "name": "unload_model_after_generate",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "unload_model_after_generate"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "links": [
+      6,
+      7,
+      48
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "FB_Qwen3TTSVoiceDesign"
+   },
+   "widgets_values": [
+    "",
+    "",
+    "1.7B",
+    "auto",
+    "bf16",
+    "Auto",
+    4242,
+    "fixed",
+    2048,
+    1,
+    50,
+    0.9,
+    1.05,
+    "sdpa",
+    true
+   ],
+   "title": "TTS — Qwen3-TTS VoiceDesign (language: Auto / English / Spanish)"
+  },
+  {
+   "id": 10,
+   "type": "SaveAudioMP3",
+   "pos": [
+    800,
+    1184
+   ],
+   "size": [
+    520,
+    110
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 7
+    },
+    {
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    },
+    {
+     "name": "quality",
+     "type": "COMBO",
+     "widget": {
+      "name": "quality"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "links": [],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveAudioMP3"
+   },
+   "widgets_values": [
+    "Character/kailani/talk/voice",
+    "V0"
+   ],
+   "title": "Save speech (mp3)"
+  },
+  {
+   "id": 11,
+   "type": "LoadImage",
+   "pos": [
+    2120,
+    124
+   ],
+   "size": [
+    400,
+    420
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      12,
+      22,
+      34
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "kailani/portrait.png",
+    "image"
+   ],
+   "title": "PORTRAIT — frontal head-and-shoulders still of the character"
+  },
+  {
+   "id": 12,
+   "type": "PrimitiveStringMultiline",
+   "pos": [
+    2120,
+    614
+   ],
+   "size": [
+    400,
+    200
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "value",
+     "type": "STRING",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      55
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveStringMultiline"
+   },
+   "widgets_values": [
+    "She talks excitedly about surfing, smiling, her eyebrows lifting with enthusiasm. At \"Big waves?\" she tilts her head and glances out to sea, then looks back into the camera with a grin. Her hair and braid move gently in the sea breeze."
+   ],
+   "title": "PERFORMANCE — body language / mood for this line (edit per render)"
+  },
+  {
+   "id": 13,
+   "type": "StringConcatenate",
+   "pos": [
+    2580,
+    124
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "string_a",
+     "type": "STRING",
+     "widget": {
+      "name": "string_a"
+     },
+     "link": 53
+    },
+    {
+     "name": "string_b",
+     "type": "STRING",
+     "widget": {
+      "name": "string_b"
+     },
+     "link": null
+    },
+    {
+     "name": "delimiter",
+     "type": "STRING",
+     "widget": {
+      "name": "delimiter"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      54
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "StringConcatenate"
+   },
+   "widgets_values": [
+    "",
+    "Using the character described above: a talking-head video of this exact character speaking directly to the camera. The character's lips, jaw and mouth move clearly and naturally in sync with the speech, with natural blinking, small head movements and facial expressions that follow what is being said. The character stays on-model the whole time: the same face, eyes, hairstyle and hair colors, skin tone and default outfit as in the reference image, in the art style given above. Steady camera that keeps the framing of the reference image.",
+    "\n\n"
+   ],
+   "title": "Compose — card + talking template"
+  },
+  {
+   "id": 14,
+   "type": "StringConcatenate",
+   "pos": [
+    2580,
+    394
+   ],
+   "size": [
+    420,
+    130
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "string_a",
+     "type": "STRING",
+     "widget": {
+      "name": "string_a"
+     },
+     "link": 54
+    },
+    {
+     "name": "string_b",
+     "type": "STRING",
+     "widget": {
+      "name": "string_b"
+     },
+     "link": 55
+    },
+    {
+     "name": "delimiter",
+     "type": "STRING",
+     "widget": {
+      "name": "delimiter"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      56
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "StringConcatenate"
+   },
+   "widgets_values": [
+    "",
+    "",
+    "\n\nPerformance: "
+   ],
+   "title": "Compose — + PERFORMANCE"
+  },
+  {
+   "id": 15,
+   "type": "CLIPTextEncode",
+   "pos": [
+    2580,
+    594
+   ],
+   "size": [
+    420,
+    90
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "text",
+     "type": "STRING",
+     "widget": {
+      "name": "text"
+     },
+     "link": 56
+    },
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 3
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      8,
+      17,
+      29
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    ""
+   ],
+   "title": "Positive (card + template + performance)"
+  },
+  {
+   "id": 16,
+   "type": "CLIPTextEncode",
+   "pos": [
+    2580,
+    754
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "text",
+     "type": "STRING",
+     "widget": {
+      "name": "text"
+     },
+     "link": null
+    },
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 4
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      9,
+      18,
+      30
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走, frozen face, closed mouth while speaking, mouth not moving, out-of-sync lips, duplicate character, second person, text, subtitles, watermark, signature, off-model, different face, different hairstyle, morphing, flicker"
+   ],
+   "title": "NEGATIVE prompt"
+  },
+  {
+   "id": 17,
+   "type": "AudioEncoderEncode",
+   "pos": [
+    2580,
+    1024
+   ],
+   "size": [
+    420,
+    50
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "audio_encoder",
+     "type": "AUDIO_ENCODER",
+     "link": 5
+    },
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 6
+    }
+   ],
+   "outputs": [
+    {
+     "name": "AUDIO_ENCODER_OUTPUT",
+     "type": "AUDIO_ENCODER_OUTPUT",
+     "links": [
+      11,
+      21,
+      33
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "AudioEncoderEncode"
+   },
+   "widgets_values": [],
+   "title": "Encode speech (wav2vec2)"
+  },
+  {
+   "id": 18,
+   "type": "ModelSamplingSD3",
+   "pos": [
+    3220,
+    124
+   ],
+   "size": [
+    300,
+    58
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 2
+    },
+    {
+     "name": "shift",
+     "type": "FLOAT",
+     "widget": {
+      "name": "shift"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      13,
+      23,
+      35
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ModelSamplingSD3"
+   },
+   "widgets_values": [
+    8
+   ],
+   "title": "Shift 8"
+  },
+  {
+   "id": 19,
+   "type": "PrimitiveInt",
+   "pos": [
+    3220,
+    252
+   ],
+   "size": [
+    300,
+    82
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "value",
+     "type": "INT",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "INT",
+     "type": "INT",
+     "links": [
+      57,
+      59,
+      61
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveInt"
+   },
+   "widgets_values": [
+    4,
+    "fixed"
+   ],
+   "title": "STEPS — 4 with lightx2v, 20 if group 01 bypassed"
+  },
+  {
+   "id": 20,
+   "type": "PrimitiveFloat",
+   "pos": [
+    3220,
+    404
+   ],
+   "size": [
+    300,
+    58
+   ],
+   "flags": {},
+   "order": 19,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "value",
+     "type": "FLOAT",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "FLOAT",
+     "type": "FLOAT",
+     "links": [
+      58,
+      60,
+      62
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveFloat"
+   },
+   "widgets_values": [
+    1
+   ],
+   "title": "CFG — 1.0 with lightx2v, 6.0 if group 01 bypassed"
+  },
+  {
+   "id": 21,
+   "type": "WanSoundImageToVideo",
+   "pos": [
+    3580,
+    124
+   ],
+   "size": [
+    340,
+    230
+   ],
+   "flags": {},
+   "order": 20,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 8
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 9
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 10
+    },
+    {
+     "name": "width",
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     },
+     "link": null
+    },
+    {
+     "name": "height",
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     },
+     "link": null
+    },
+    {
+     "name": "length",
+     "type": "INT",
+     "widget": {
+      "name": "length"
+     },
+     "link": null
+    },
+    {
+     "name": "batch_size",
+     "type": "INT",
+     "widget": {
+      "name": "batch_size"
+     },
+     "link": null
+    },
+    {
+     "name": "audio_encoder_output",
+     "type": "AUDIO_ENCODER_OUTPUT",
+     "link": 11
+    },
+    {
+     "name": "ref_image",
+     "type": "IMAGE",
+     "link": 12
+    },
+    {
+     "name": "control_video",
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "name": "ref_motion",
+     "type": "IMAGE",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "links": [
+      14
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "links": [
+      15
+     ],
+     "slot_index": 1
+    },
+    {
+     "name": "latent",
+     "type": "LATENT",
+     "links": [
+      16
+     ],
+     "slot_index": 2
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "WanSoundImageToVideo"
+   },
+   "widgets_values": [
+    640,
+    640,
+    77,
+    1
+   ],
+   "title": "S2V chunk 1 conditioning (640×640, 77 frames ≈ 5 s)"
+  },
+  {
+   "id": 22,
+   "type": "KSampler",
+   "pos": [
+    3580,
+    424
+   ],
+   "size": [
+    340,
+    262
+   ],
+   "flags": {},
+   "order": 21,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 13
+    },
+    {
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     },
+     "link": 57
+    },
+    {
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     },
+     "link": 58
+    },
+    {
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     },
+     "link": null
+    },
+    {
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     },
+     "link": null
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 14
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 15
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 16
+    },
+    {
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      20,
+      27
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    424242,
+    "fixed",
+    4,
+    1,
+    "uni_pc",
+    "simple",
+    1
+   ],
+   "title": "Sampler — chunk 1 (0–5 s)"
+  },
+  {
+   "id": 23,
+   "type": "WanSoundImageToVideoExtend",
+   "pos": [
+    4140,
+    124
+   ],
+   "size": [
+    340,
+    190
+   ],
+   "flags": {},
+   "order": 22,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 17
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 18
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 19
+    },
+    {
+     "name": "length",
+     "type": "INT",
+     "widget": {
+      "name": "length"
+     },
+     "link": null
+    },
+    {
+     "name": "video_latent",
+     "type": "LATENT",
+     "link": 20
+    },
+    {
+     "name": "audio_encoder_output",
+     "type": "AUDIO_ENCODER_OUTPUT",
+     "link": 21
+    },
+    {
+     "name": "ref_image",
+     "type": "IMAGE",
+     "link": 22
+    },
+    {
+     "name": "control_video",
+     "type": "IMAGE",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "links": [
+      24
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "links": [
+      25
+     ],
+     "slot_index": 1
+    },
+    {
+     "name": "latent",
+     "type": "LATENT",
+     "links": [
+      26
+     ],
+     "slot_index": 2
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "WanSoundImageToVideoExtend"
+   },
+   "widgets_values": [
+    77
+   ],
+   "title": "S2V extend — chunk 2 conditioning"
+  },
+  {
+   "id": 24,
+   "type": "KSampler",
+   "pos": [
+    4140,
+    384
+   ],
+   "size": [
+    340,
+    262
+   ],
+   "flags": {},
+   "order": 23,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 23
+    },
+    {
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     },
+     "link": 59
+    },
+    {
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     },
+     "link": 60
+    },
+    {
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     },
+     "link": null
+    },
+    {
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     },
+     "link": null
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 24
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 25
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 26
+    },
+    {
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      28
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    1,
+    "fixed",
+    4,
+    1,
+    "uni_pc",
+    "simple",
+    1
+   ],
+   "title": "Sampler — chunk 2 (5–10 s)"
+  },
+  {
+   "id": 25,
+   "type": "LatentConcat",
+   "pos": [
+    4140,
+    716
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 24,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples1",
+     "type": "LATENT",
+     "link": 27
+    },
+    {
+     "name": "samples2",
+     "type": "LATENT",
+     "link": 28
+    },
+    {
+     "name": "dim",
+     "type": "COMBO",
+     "widget": {
+      "name": "dim"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      32,
+      39
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LatentConcat"
+   },
+   "widgets_values": [
+    "t"
+   ],
+   "title": "Append chunk 2"
+  },
+  {
+   "id": 26,
+   "type": "WanSoundImageToVideoExtend",
+   "pos": [
+    4140,
+    1082
+   ],
+   "size": [
+    340,
+    190
+   ],
+   "flags": {},
+   "order": 25,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 29
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 30
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 31
+    },
+    {
+     "name": "length",
+     "type": "INT",
+     "widget": {
+      "name": "length"
+     },
+     "link": null
+    },
+    {
+     "name": "video_latent",
+     "type": "LATENT",
+     "link": 32
+    },
+    {
+     "name": "audio_encoder_output",
+     "type": "AUDIO_ENCODER_OUTPUT",
+     "link": 33
+    },
+    {
+     "name": "ref_image",
+     "type": "IMAGE",
+     "link": 34
+    },
+    {
+     "name": "control_video",
+     "type": "IMAGE",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "links": [
+      36
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "links": [
+      37
+     ],
+     "slot_index": 1
+    },
+    {
+     "name": "latent",
+     "type": "LATENT",
+     "links": [
+      38
+     ],
+     "slot_index": 2
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "WanSoundImageToVideoExtend"
+   },
+   "widgets_values": [
+    77
+   ],
+   "title": "S2V extend — chunk 3 conditioning"
+  },
+  {
+   "id": 27,
+   "type": "KSampler",
+   "pos": [
+    4140,
+    1342
+   ],
+   "size": [
+    340,
+    262
+   ],
+   "flags": {},
+   "order": 26,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 35
+    },
+    {
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     },
+     "link": 61
+    },
+    {
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     },
+     "link": 62
+    },
+    {
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     },
+     "link": null
+    },
+    {
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     },
+     "link": null
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 36
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 37
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 38
+    },
+    {
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      40
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    2,
+    "fixed",
+    4,
+    1,
+    "uni_pc",
+    "simple",
+    1
+   ],
+   "title": "Sampler — chunk 3 (10–15 s)"
+  },
+  {
+   "id": 28,
+   "type": "LatentConcat",
+   "pos": [
+    4140,
+    1674
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 27,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples1",
+     "type": "LATENT",
+     "link": 39
+    },
+    {
+     "name": "samples2",
+     "type": "LATENT",
+     "link": 40
+    },
+    {
+     "name": "dim",
+     "type": "COMBO",
+     "widget": {
+      "name": "dim"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      41,
+      43
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LatentConcat"
+   },
+   "widgets_values": [
+    "t"
+   ],
+   "title": "Append chunk 3"
+  },
+  {
+   "id": 29,
+   "type": "LatentCut",
+   "pos": [
+    4700,
+    124
+   ],
+   "size": [
+    340,
+    106
+   ],
+   "flags": {},
+   "order": 28,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 41
+    },
+    {
+     "name": "dim",
+     "type": "COMBO",
+     "widget": {
+      "name": "dim"
+     },
+     "link": null
+    },
+    {
+     "name": "index",
+     "type": "INT",
+     "widget": {
+      "name": "index"
+     },
+     "link": null
+    },
+    {
+     "name": "amount",
+     "type": "INT",
+     "widget": {
+      "name": "amount"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      42
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LatentCut"
+   },
+   "widgets_values": [
+    "t",
+    0,
+    1
+   ],
+   "title": "First-frame fix: take latent frame 0"
+  },
+  {
+   "id": 30,
+   "type": "LatentConcat",
+   "pos": [
+    4700,
+    300
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 29,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples1",
+     "type": "LATENT",
+     "link": 42
+    },
+    {
+     "name": "samples2",
+     "type": "LATENT",
+     "link": 43
+    },
+    {
+     "name": "dim",
+     "type": "COMBO",
+     "widget": {
+      "name": "dim"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      44
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LatentConcat"
+   },
+   "widgets_values": [
+    "t"
+   ],
+   "title": "First-frame fix: prepend it"
+  },
+  {
+   "id": 31,
+   "type": "VAEDecode",
+   "pos": [
+    4700,
+    452
+   ],
+   "size": [
+    340,
+    46
+   ],
+   "flags": {},
+   "order": 30,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 44
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 45
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      46
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": [],
+   "title": "Decode frames"
+  },
+  {
+   "id": 32,
+   "type": "ImageFromBatch",
+   "pos": [
+    4700,
+    568
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 31,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 46
+    },
+    {
+     "name": "batch_index",
+     "type": "INT",
+     "widget": {
+      "name": "batch_index"
+     },
+     "link": null
+    },
+    {
+     "name": "length",
+     "type": "INT",
+     "widget": {
+      "name": "length"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      47
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ImageFromBatch"
+   },
+   "widgets_values": [
+    3,
+    4096
+   ],
+   "title": "First-frame fix: drop the overbaked lead frames"
+  },
+  {
+   "id": 33,
+   "type": "CreateVideo",
+   "pos": [
+    4700,
+    720
+   ],
+   "size": [
+    340,
+    130
+   ],
+   "flags": {},
+   "order": 32,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 47
+    },
+    {
+     "name": "fps",
+     "type": "FLOAT",
+     "widget": {
+      "name": "fps"
+     },
+     "link": null
+    },
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 48
+    },
+    {
+     "name": "bit_depth",
+     "type": "COMBO",
+     "widget": {
+      "name": "bit_depth"
+     },
+     "link": null
+    },
+    {
+     "name": "color_space",
+     "type": "COMBO",
+     "widget": {
+      "name": "color_space"
+     },
+     "link": null
+    },
+    {
+     "name": "codec",
+     "type": "COMBO",
+     "widget": {
+      "name": "codec"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      49
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CreateVideo"
+   },
+   "widgets_values": [
+    16,
+    "auto",
+    "sRGB",
+    "none"
+   ],
+   "title": "Frames + speech → video (16 fps)"
+  },
+  {
+   "id": 34,
+   "type": "SaveVideo",
+   "pos": [
+    5100,
+    124
+   ],
+   "size": [
+    420,
+    420
+   ],
+   "flags": {},
+   "order": 33,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "video",
+     "type": "VIDEO",
+     "link": 49
+    },
+    {
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    },
+    {
+     "name": "format",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format"
+     },
+     "link": null
+    },
+    {
+     "name": "codec",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "codec"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "video",
+     "type": "VIDEO",
+     "links": [],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveVideo"
+   },
+   "widgets_values": [
+    "Character/kailani/talk/talk",
+    "auto",
+    "auto"
+   ],
+   "title": "Save talking clip (mp4 with audio)"
+  },
+  {
+   "id": 35,
+   "type": "MarkdownNote",
+   "pos": [
+    800,
+    1578
+   ],
+   "size": [
+    900,
+    560
+   ],
+   "flags": {},
+   "order": 35,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "properties": {},
+   "widgets_values": [
+    "## Models & LoRAs used by this flow — download links\n\nDownload on the host only (`ssh gaguilar@172.16.0.101`), into `~/git/ComfyUI/models/<folder>/`.\n\n| Folder | File | Download | Page |\n|---|---|---|---|\n| diffusion_models | wan2.2_s2v_14B_fp8_scaled.safetensors | [file](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_s2v_14B_fp8_scaled.safetensors) | [Wan 2.2 repack](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged) |\n| audio_encoders | wav2vec2_large_english_fp16.safetensors | [file](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/audio_encoders/wav2vec2_large_english_fp16.safetensors) | [Wan 2.2 repack](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged) |\n| text_encoders | umt5_xxl_fp8_e4m3fn_scaled.safetensors | [file](https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors) | [Wan 2.1 repack](https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged) |\n| vae | wan_2.1_vae.safetensors | [file](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors) | [Wan 2.2 repack](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged) |\n| loras | wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors (strength 1.0, no trigger) | [file](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors) | [lightx2v Wan2.2-Lightning](https://huggingface.co/lightx2v/Wan2.2-Lightning) |\n| qwen-tts/Qwen3-TTS-12Hz-1.7B-VoiceDesign | whole HF repo (folder) | `hf download Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign --local-dir …` | [Qwen3-TTS VoiceDesign](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign) |\n| qwen-tts/Qwen3-TTS-Tokenizer-12Hz | whole HF repo (folder) | `hf download Qwen/Qwen3-TTS-Tokenizer-12Hz --local-dir …` | [Qwen3-TTS tokenizer](https://huggingface.co/Qwen/Qwen3-TTS-Tokenizer-12Hz) |\n\nTTS node pack: [flybirdxx/ComfyUI-Qwen-TTS](https://github.com/flybirdxx/ComfyUI-Qwen-TTS). Official guide: [docs.comfy.org — Wan 2.2 S2V](https://docs.comfy.org/tutorials/video/wan/wan2-2-s2v).\n\nOptional: `wan2.2_s2v_14B_bf16.safetensors` (same repo) — less fp8 degradation, ~2× the VRAM.\n\n**Speed LoRA on (shipped):** STEPS 4, CFG 1.0.\n**Group 01 bypassed:** STEPS 20, CFG 6.0 (both are the two primitives in group 04; they feed all three samplers)."
+   ],
+   "title": "MODEL & LoRA LINKS"
+  },
+  {
+   "id": 36,
+   "type": "MarkdownNote",
+   "pos": [
+    1380,
+    124
+   ],
+   "size": [
+    520,
+    640
+   ],
+   "flags": {},
+   "order": 36,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "properties": {},
+   "widgets_values": [
+    "## Script length ↔ clip length\n\nEach S2V chunk is **77 frames ≈ 5 s** of video at 16 fps and consumes the next 5 s of speech.\n\nMeasured speaking rate of this voice: **English ≈ 2.5 words/s, Spanish ≈ 2.1 words/s**.\n\n| Chunks on | Video | English script | Spanish script |\n|---|---|---|---|\n| 1 (groups 05 + 06 bypassed) | 5 s | ≤ 12 words | ≤ 10 words |\n| 2 (group 06 bypassed) | 10 s | ≤ 24 words | ≤ 20 words |\n| **3 (shipped)** | **15 s** | **≤ 35 words** | **≤ 30 words** |\n\n- Speech **longer** than the chunks is **cut off** at the end of the video (a 36-word Spanish line = 16.9 s lost its last 2 s).\n- Speech **shorter** leaves a silent tail where the character idles — bypass a chunk.\n- Check the length of `talk/voice_*.mp3` (saved first) if in doubt.\n- To go past 15 s, copy group 06, wire its `video_latent` / `samples1` from the previous\n  chunk's **Append** output, and point the first-frame fix (node 29/30) at the new last Append.\n\n## Languages\n\nThe TTS node's `language` is **Auto**: write the SCRIPT in English or Spanish and it is\ndetected. If a Spanish line comes out with an English accent (or vice-versa), set it to\n`Spanish` / `English` explicitly. Qwen3-TTS also speaks ZH, JA, KO, FR, DE, PT, RU, IT.\nThe Voice line stays in English either way — it describes the timbre, not the language."
+   ],
+   "title": "SCRIPT LENGTH & LANGUAGES — read before editing the SCRIPT"
+  },
+  {
+   "id": 37,
+   "type": "MarkdownNote",
+   "pos": [
+    60,
+    1658
+   ],
+   "size": [
+    520,
+    420
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "EXAMPLE CARD — Kailani, original anime (copy into the card to use)",
+   "properties": {},
+   "widgets_values": [
+    "# EXAMPLE CARD — Kailani, original anime version\n\nThe live card above is the **photorealistic** Kailani. This is the original drawn version, kept as an example of a non-photographic card. To use it, copy the block into the CHARACTER CARD node.\n\nStyle lives **only** in the card's `Art style:` line; the templates never name a medium. For a drawn card, also switch the upscaler back to `RealESRGAN_x4plus_anime_6B.pth`.\n\n```\nCharacter name: KAILANI\nScope: Animation\nArt style: anime style, clean line art, cel shading\nCharacter: a lean athletic teenage surfer girl with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, bright turquoise eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white.\nVoice: a young woman in her late teens with a bright, warm, slightly husky mid-high voice; relaxed and upbeat, laid-back surfer energy, a smile in her voice, natural conversational pace, clear articulation.\n```\n"
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   5,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   5,
+   0,
+   18,
+   0,
+   "MODEL"
+  ],
+  [
+   3,
+   2,
+   0,
+   15,
+   1,
+   "CLIP"
+  ],
+  [
+   4,
+   2,
+   0,
+   16,
+   1,
+   "CLIP"
+  ],
+  [
+   5,
+   4,
+   0,
+   17,
+   0,
+   "AUDIO_ENCODER"
+  ],
+  [
+   6,
+   9,
+   0,
+   17,
+   1,
+   "AUDIO"
+  ],
+  [
+   7,
+   9,
+   0,
+   10,
+   0,
+   "AUDIO"
+  ],
+  [
+   8,
+   15,
+   0,
+   21,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   9,
+   16,
+   0,
+   21,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   10,
+   3,
+   0,
+   21,
+   2,
+   "VAE"
+  ],
+  [
+   11,
+   17,
+   0,
+   21,
+   7,
+   "AUDIO_ENCODER_OUTPUT"
+  ],
+  [
+   12,
+   11,
+   0,
+   21,
+   8,
+   "IMAGE"
+  ],
+  [
+   13,
+   18,
+   0,
+   22,
+   0,
+   "MODEL"
+  ],
+  [
+   14,
+   21,
+   0,
+   22,
+   6,
+   "CONDITIONING"
+  ],
+  [
+   15,
+   21,
+   1,
+   22,
+   7,
+   "CONDITIONING"
+  ],
+  [
+   16,
+   21,
+   2,
+   22,
+   8,
+   "LATENT"
+  ],
+  [
+   17,
+   15,
+   0,
+   23,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   18,
+   16,
+   0,
+   23,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   19,
+   3,
+   0,
+   23,
+   2,
+   "VAE"
+  ],
+  [
+   20,
+   22,
+   0,
+   23,
+   4,
+   "LATENT"
+  ],
+  [
+   21,
+   17,
+   0,
+   23,
+   5,
+   "AUDIO_ENCODER_OUTPUT"
+  ],
+  [
+   22,
+   11,
+   0,
+   23,
+   6,
+   "IMAGE"
+  ],
+  [
+   23,
+   18,
+   0,
+   24,
+   0,
+   "MODEL"
+  ],
+  [
+   24,
+   23,
+   0,
+   24,
+   6,
+   "CONDITIONING"
+  ],
+  [
+   25,
+   23,
+   1,
+   24,
+   7,
+   "CONDITIONING"
+  ],
+  [
+   26,
+   23,
+   2,
+   24,
+   8,
+   "LATENT"
+  ],
+  [
+   27,
+   22,
+   0,
+   25,
+   0,
+   "LATENT"
+  ],
+  [
+   28,
+   24,
+   0,
+   25,
+   1,
+   "LATENT"
+  ],
+  [
+   29,
+   15,
+   0,
+   26,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   30,
+   16,
+   0,
+   26,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   31,
+   3,
+   0,
+   26,
+   2,
+   "VAE"
+  ],
+  [
+   32,
+   25,
+   0,
+   26,
+   4,
+   "LATENT"
+  ],
+  [
+   33,
+   17,
+   0,
+   26,
+   5,
+   "AUDIO_ENCODER_OUTPUT"
+  ],
+  [
+   34,
+   11,
+   0,
+   26,
+   6,
+   "IMAGE"
+  ],
+  [
+   35,
+   18,
+   0,
+   27,
+   0,
+   "MODEL"
+  ],
+  [
+   36,
+   26,
+   0,
+   27,
+   6,
+   "CONDITIONING"
+  ],
+  [
+   37,
+   26,
+   1,
+   27,
+   7,
+   "CONDITIONING"
+  ],
+  [
+   38,
+   26,
+   2,
+   27,
+   8,
+   "LATENT"
+  ],
+  [
+   39,
+   25,
+   0,
+   28,
+   0,
+   "LATENT"
+  ],
+  [
+   40,
+   27,
+   0,
+   28,
+   1,
+   "LATENT"
+  ],
+  [
+   41,
+   28,
+   0,
+   29,
+   0,
+   "LATENT"
+  ],
+  [
+   42,
+   29,
+   0,
+   30,
+   0,
+   "LATENT"
+  ],
+  [
+   43,
+   28,
+   0,
+   30,
+   1,
+   "LATENT"
+  ],
+  [
+   44,
+   30,
+   0,
+   31,
+   0,
+   "LATENT"
+  ],
+  [
+   45,
+   3,
+   0,
+   31,
+   1,
+   "VAE"
+  ],
+  [
+   46,
+   31,
+   0,
+   32,
+   0,
+   "IMAGE"
+  ],
+  [
+   47,
+   32,
+   0,
+   33,
+   0,
+   "IMAGE"
+  ],
+  [
+   48,
+   9,
+   0,
+   33,
+   2,
+   "AUDIO"
+  ],
+  [
+   49,
+   33,
+   0,
+   34,
+   0,
+   "VIDEO"
+  ],
+  [
+   50,
+   6,
+   0,
+   8,
+   0,
+   "STRING"
+  ],
+  [
+   51,
+   7,
+   0,
+   9,
+   0,
+   "STRING"
+  ],
+  [
+   52,
+   8,
+   0,
+   9,
+   1,
+   "STRING"
+  ],
+  [
+   53,
+   6,
+   0,
+   13,
+   0,
+   "STRING"
+  ],
+  [
+   54,
+   13,
+   0,
+   14,
+   0,
+   "STRING"
+  ],
+  [
+   55,
+   12,
+   0,
+   14,
+   1,
+   "STRING"
+  ],
+  [
+   56,
+   14,
+   0,
+   15,
+   0,
+   "STRING"
+  ],
+  [
+   57,
+   19,
+   0,
+   22,
+   2,
+   "INT"
+  ],
+  [
+   58,
+   20,
+   0,
+   22,
+   3,
+   "FLOAT"
+  ],
+  [
+   59,
+   19,
+   0,
+   24,
+   2,
+   "INT"
+  ],
+  [
+   60,
+   20,
+   0,
+   24,
+   3,
+   "FLOAT"
+  ],
+  [
+   61,
+   19,
+   0,
+   27,
+   2,
+   "INT"
+  ],
+  [
+   62,
+   20,
+   0,
+   27,
+   3,
+   "FLOAT"
+  ]
+ ],
+ "groups": [
+  {
+   "id": 1,
+   "title": "00 — MODELS (Wan 2.2 S2V 14B fp8, umt5, Wan 2.1 VAE, wav2vec2)",
+   "bounding": [
+    0,
+    0,
+    540,
+    698
+   ],
+   "color": "#3f789e",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 2,
+   "title": "01 — SPEED LoRA lightx2v 4-step [bypass to disable → STEPS 20 / CFG 6]",
+   "bounding": [
+    0,
+    798,
+    540,
+    266
+   ],
+   "color": "#4f9d69",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 3,
+   "title": "CHARACTER CARD (with Voice line)",
+   "bounding": [
+    0,
+    1164,
+    640,
+    964
+   ],
+   "color": "#a1309b",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 4,
+   "title": "02 — VOICE: SCRIPT → Qwen3-TTS (EN / ES)",
+   "bounding": [
+    740,
+    0,
+    1220,
+    1354
+   ],
+   "color": "#a1309b",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 5,
+   "title": "03 — PORTRAIT + TALKING PROMPT + SPEECH ENCODE",
+   "bounding": [
+    2060,
+    0,
+    1000,
+    1134
+   ],
+   "color": "#3f789e",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 6,
+   "title": "04 — CHUNK 1 (0–5 s) — S2V sampler",
+   "bounding": [
+    3160,
+    0,
+    820,
+    746
+   ],
+   "color": "#3f789e",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 7,
+   "title": "05 — CHUNK 2 (5–10 s) [bypass to disable]",
+   "bounding": [
+    4080,
+    0,
+    460,
+    858
+   ],
+   "color": "#88A",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 8,
+   "title": "06 — CHUNK 3 (10–15 s) [bypass to disable]",
+   "bounding": [
+    4080,
+    958,
+    460,
+    858
+   ],
+   "color": "#88A",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 9,
+   "title": "07 — DECODE + SAVE (mp4 with speech)",
+   "bounding": [
+    4640,
+    0,
+    940,
+    910
+   ],
+   "color": "#3f789e",
+   "font_size": 24,
+   "flags": {}
+  },
+  {
+   "id": 10,
+   "title": "MODEL & LoRA LINKS (read me first)",
+   "bounding": [
+    740,
+    1454,
+    1020,
+    744
+   ],
+   "color": "#b58b2a",
+   "font_size": 24,
+   "flags": {}
+  }
+ ],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.55,
+   "offset": [
+    40,
+    40
+   ]
+  }
+ },
+ "version": 0.4
+}

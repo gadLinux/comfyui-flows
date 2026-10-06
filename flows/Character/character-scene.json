@@ -1,0 +1,2197 @@
+{
+ "id": "5c3e2a0e-7d0b-4b8e-9b55-2f6c1a9d4e10",
+ "revision": 0,
+ "last_node_id": 42,
+ "last_link_id": 28,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UnetLoaderGGUF",
+   "pos": [
+    60,
+    124
+   ],
+   "size": [
+    508.421728515625,
+    106
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "unet_name",
+     "name": "unet_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "unet_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "MODEL",
+     "name": "MODEL",
+     "type": "MODEL",
+     "slot_index": 0,
+     "links": [
+      1
+     ]
+    }
+   ],
+   "title": "Diffusion model (Qwen-Image 2.1 GGUF)",
+   "properties": {
+    "aux_id": "leejet/ComfyUI-GGUF",
+    "ver": "373048b8403a7820620065210a691263d4da0a61",
+    "Node name for S&R": "UnetLoaderGGUF",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "unet_name": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "qwen-image-2.1-UC-Q8_0.gguf"
+   ],
+   "widgets_values_named": {
+    "unet_name": "qwen-image-2.1-UC-Q8_0.gguf"
+   }
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "pos": [
+    60,
+    300
+   ],
+   "size": [
+    665.0738891601562,
+    158
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "showAdvanced": true,
+   "inputs": [
+    {
+     "localized_name": "clip_name",
+     "name": "clip_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "clip_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "type",
+     "name": "type",
+     "type": "COMBO",
+     "widget": {
+      "name": "type"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "device",
+     "name": "device",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "CLIP",
+     "name": "CLIP",
+     "type": "CLIP",
+     "slot_index": 0,
+     "links": [
+      7
+     ]
+    }
+   ],
+   "title": "Text encoder (Qwen3-VL 8B int8) — device default (runs on GPU)",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "CLIPLoader",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "clip_name": true,
+      "type": true,
+      "device": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "qwen3vl_8b_ablit_int8.safetensors",
+    "qwen_image",
+    "default"
+   ],
+   "widgets_values_named": {
+    "clip_name": "qwen3vl_8b_ablit_int8.safetensors",
+    "type": "qwen_image",
+    "device": "default"
+   }
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    60,
+    528
+   ],
+   "size": [
+    280,
+    106
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "vae_name",
+     "name": "vae_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "vae_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VAE",
+     "name": "VAE",
+     "type": "VAE",
+     "slot_index": 0,
+     "links": [
+      8,
+      18
+     ]
+    }
+   ],
+   "title": "VAE",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "VAELoader",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "vae_name": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "qwen_image_2.1_vae_bf16.safetensors"
+   ],
+   "widgets_values_named": {
+    "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+   }
+  },
+  {
+   "id": 4,
+   "type": "LoraLoaderModelOnly",
+   "pos": [
+    60,
+    918
+   ],
+   "size": [
+    429.2912963867187,
+    132
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    },
+    {
+     "localized_name": "lora_name",
+     "name": "lora_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "lora_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "strength_model",
+     "name": "strength_model",
+     "type": "FLOAT",
+     "widget": {
+      "name": "strength_model"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "MODEL",
+     "name": "MODEL",
+     "type": "MODEL",
+     "slot_index": 0,
+     "links": [
+      2
+     ]
+    }
+   ],
+   "title": "PLACEHOLDER character LoRA slot [bypassed, strength 0]",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "LoraLoaderModelOnly",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "lora_name": true,
+      "strength_model": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+    0
+   ],
+   "widgets_values_named": {
+    "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+    "strength_model": 0
+   }
+  },
+  {
+   "id": 6,
+   "type": "KSampler",
+   "pos": [
+    2860.321728515625,
+    324
+   ],
+   "size": [
+    280,
+    262
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL",
+     "link": 2
+    },
+    {
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 14
+    },
+    {
+     "localized_name": "negative",
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 15
+    },
+    {
+     "localized_name": "latent_image",
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 28
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "steps",
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "cfg",
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "sampler_name",
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "scheduler",
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "denoise",
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "type": "LATENT",
+     "slot_index": 0,
+     "links": [
+      17
+     ]
+    }
+   ],
+   "title": "Sampler — Scene",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "KSampler",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "seed": true,
+      "steps": true,
+      "cfg": true,
+      "sampler_name": true,
+      "scheduler": true,
+      "denoise": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    424242,
+    "fixed",
+    30,
+    0.6,
+    "euler",
+    "simple",
+    1
+   ],
+   "widgets_values_named": {
+    "seed": 424242,
+    "control_after_generate": "fixed",
+    "steps": 30,
+    "cfg": 0.6,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "denoise": 1
+   }
+  },
+  {
+   "id": 7,
+   "type": "VAEDecode",
+   "pos": [
+    3172.6437774911965,
+    631.1979364366321
+   ],
+   "size": [
+    280,
+    80
+   ],
+   "flags": {},
+   "order": 19,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "samples",
+     "name": "samples",
+     "type": "LATENT",
+     "link": 17
+    },
+    {
+     "localized_name": "vae",
+     "name": "vae",
+     "type": "VAE",
+     "link": 18
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      19,
+      20
+     ]
+    }
+   ],
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "VAEDecode",
+    "ue_properties": {
+     "widget_ue_connectable": {},
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   }
+  },
+  {
+   "id": 8,
+   "type": "SaveImage",
+   "pos": [
+    2860.321728515625,
+    806
+   ],
+   "size": [
+    280,
+    302
+   ],
+   "flags": {},
+   "order": 20,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "link": 19
+    },
+    {
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": []
+    }
+   ],
+   "title": "Save — Scene",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "SaveImage",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "filename_prefix": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "Character/kailani/scenes/scene"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "Character/kailani/scenes/scene"
+   }
+  },
+  {
+   "id": 11,
+   "type": "LoadImage",
+   "pos": [
+    945.0738891601562,
+    124
+   ],
+   "size": [
+    340,
+    340
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      10
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "slot_index": 1,
+     "links": []
+    }
+   ],
+   "title": "<image1> THREE-VIEW sheet",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "LoadImage",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "image": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "kailani/three-view.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "kailani_ref_costumes.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 12,
+   "type": "LoadImage",
+   "pos": [
+    945.0738891601562,
+    534
+   ],
+   "size": [
+    340,
+    340
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      11
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "slot_index": 1,
+     "links": []
+    }
+   ],
+   "title": "<image2> EXPRESSIONS sheet",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "LoadImage",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "image": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "kailani/expressions.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "kailani_ref_expressions.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 13,
+   "type": "LoadImage",
+   "pos": [
+    945.0738891601562,
+    1310
+   ],
+   "size": [
+    340,
+    340
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      12
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "slot_index": 1,
+     "links": []
+    }
+   ],
+   "title": "<image3> POSES sheet",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "LoadImage",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "image": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "kailani/poses.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "kailani/poses.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 14,
+   "type": "LoadImage",
+   "pos": [
+    945.0738891601562,
+    2244
+   ],
+   "size": [
+    340,
+    340
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      13
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "slot_index": 1,
+     "links": []
+    }
+   ],
+   "title": "<image4> COSTUMES sheet",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "LoadImage",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "image": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "kailani/costumes.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "kailani/costumes.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 15,
+   "type": "PrimitiveInt",
+   "pos": [
+    945.0738891601562,
+    944
+   ],
+   "size": [
+    575.2478393554687,
+    82
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "value",
+     "name": "value",
+     "type": "INT",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "INT",
+     "name": "INT",
+     "type": "INT",
+     "slot_index": 0,
+     "links": [
+      9
+     ]
+    }
+   ],
+   "title": "REFERENCE RESOLUTION — each sheet is resized to about N×N for the encoder",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "PrimitiveInt",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "value": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    768,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "value": 768,
+    "fixed": "fixed"
+   }
+  },
+  {
+   "id": 20,
+   "type": "PrimitiveStringMultiline",
+   "pos": [
+    1740.321728515625,
+    124
+   ],
+   "size": [
+    440,
+    220
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "value",
+     "name": "value",
+     "type": "STRING",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "slot_index": 0,
+     "links": [
+      5
+     ]
+    }
+   ],
+   "title": "SCENE — edit this per render",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "PrimitiveStringMultiline",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "value": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "Golden hour. The character surfs inside the curl of one huge three-metre wave, standing on her yellow hibiscus surfboard with both bare feet planted on it. She looks worried, eyes wide, glancing up at the wall of water rolling over her. One hand trails along the wave face, the other arm points forward for balance. A few seagulls fly low over the sea.\n\nFar in the background, small and soft-focus on the water near the shore, a few other surfers paddle on their own boards: adult men and women with short dark hair, in black wetsuits. None of them looks like the character.\n\nMedium-wide shot, three-quarter view."
+   ],
+   "widgets_values_named": {
+    "value": "Golden hour. The character surfs inside the curl of one huge three-metre wave, standing on her yellow hibiscus surfboard with both bare feet planted on it. She looks worried, eyes wide, glancing up at the wall of water rolling over her. One hand trails along the wave face, the other arm points forward for balance. A few seagulls fly low over the sea.\n\nFar in the background, small and soft-focus on the water near the shore, a few other surfers paddle on their own boards: adult men and women with short dark hair, in black wetsuits. None of them looks like the character.\n\nMedium-wide shot, three-quarter view."
+   }
+  },
+  {
+   "id": 21,
+   "type": "StringConcatenate",
+   "pos": [
+    1747.9068762396892,
+    406.41485227593574
+   ],
+   "size": [
+    440,
+    300
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "string_a",
+     "name": "string_a",
+     "type": "STRING",
+     "widget": {
+      "name": "string_a"
+     },
+     "link": 3
+    },
+    {
+     "localized_name": "string_b",
+     "name": "string_b",
+     "type": "STRING",
+     "widget": {
+      "name": "string_b"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "delimiter",
+     "name": "delimiter",
+     "type": "STRING",
+     "widget": {
+      "name": "delimiter"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "slot_index": 0,
+     "links": [
+      4
+     ]
+    }
+   ],
+   "title": "Compose — card + scene template",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "StringConcatenate",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "string_a": true,
+      "string_b": true,
+      "delimiter": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "",
+    "Reference images: <image1> is this character's three-view turnaround sheet (front, side and back view) and <image2> is the character's expression sheet. Both show the same character, the one described above.\n\nUsing that exact character, create one single finished image, not a reference sheet: one scene, one instance of the character, a full detailed background, no grid, no panels, no gutters, no text labels, no name title. Keep the character exactly on-model with the references: the same face shape, eyes and eye color, hairstyle and hair colors, skin tone and body proportions as in <image1>; facial expressions shown the way <image2> shows them. The character wears the default outfit exactly as designed in <image1>. If the scene involves the signature prop, show it exactly as in the references. In the art style given above, the scene's colors harmonised with the character's color palette, strong composition, lighting that is coherent between the character and the background.",
+    "\n\n"
+   ],
+   "widgets_values_named": {
+    "string_a": "",
+    "string_b": "Reference images: <image1> is this character's three-view turnaround sheet (front, side and back view) and <image2> is the character's expression sheet. Both show the same character, the one described above.\n",
+    "delimiter": "\n\n"
+   }
+  },
+  {
+   "id": 22,
+   "type": "StringConcatenate",
+   "pos": [
+    1740.321728515625,
+    784
+   ],
+   "size": [
+    440,
+    166
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "string_a",
+     "name": "string_a",
+     "type": "STRING",
+     "widget": {
+      "name": "string_a"
+     },
+     "link": 27
+    },
+    {
+     "localized_name": "string_b",
+     "name": "string_b",
+     "type": "STRING",
+     "widget": {
+      "name": "string_b"
+     },
+     "link": 5
+    },
+    {
+     "localized_name": "delimiter",
+     "name": "delimiter",
+     "type": "STRING",
+     "widget": {
+      "name": "delimiter"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "slot_index": 0,
+     "links": [
+      6
+     ]
+    }
+   ],
+   "title": "Compose — + SCENE",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "StringConcatenate",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "string_a": true,
+      "string_b": true,
+      "delimiter": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "",
+    "",
+    "\n\nScene: "
+   ],
+   "widgets_values_named": {
+    "string_a": "",
+    "string_b": "",
+    "delimiter": "\n\nScene: "
+   }
+  },
+  {
+   "id": 23,
+   "type": "TextEncodeQwenImage21",
+   "pos": [
+    2220.321728515625,
+    124
+   ],
+   "size": [
+    420,
+    420
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP",
+     "link": 7
+    },
+    {
+     "localized_name": "image_1",
+     "name": "images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 10
+    },
+    {
+     "localized_name": "image_2",
+     "name": "images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 11
+    },
+    {
+     "localized_name": "image_3",
+     "name": "images.image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 12
+    },
+    {
+     "localized_name": "image_4",
+     "name": "images.image_4",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 13
+    },
+    {
+     "localized_name": "image_5",
+     "name": "images.image_5",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "image_6",
+     "name": "images.image_6",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "image_7",
+     "name": "images.image_7",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE",
+     "link": 8
+    },
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 6
+    },
+    {
+     "localized_name": "negative_prompt",
+     "name": "negative_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "negative_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "resolution",
+     "type": "INT",
+     "widget": {
+      "name": "resolution"
+     },
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING",
+     "slot_index": 0,
+     "links": [
+      14
+     ]
+    },
+    {
+     "localized_name": "negative",
+     "name": "negative",
+     "type": "CONDITIONING",
+     "slot_index": 1,
+     "links": [
+      15
+     ]
+    },
+    {
+     "localized_name": "latent",
+     "name": "latent",
+     "type": "LATENT",
+     "slot_index": 2,
+     "links": []
+    }
+   ],
+   "title": "Encode — card + 4 reference sheets + scene",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "TextEncodeQwenImage21",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "prompt": true,
+      "negative_prompt": true,
+      "resolution": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "",
+    "duplicate prop, second prop,\ncharacter sheet, reference sheet, model sheet, turnaround, grid, panels, split screen, collage, multiple views, duplicate character, two copies of the same character, clone, text, labels, caption, title, watermark, signature, transparent background, empty background, off-model, different face, different hairstyle, different eye color, inconsistent outfit, extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts",
+    768
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "negative_prompt": "duplicate prop, second prop, second copy of the character, look-alike, twin, background people wearing the character's outfit, extra prop, two surfboards, floating people, people in the sky, ghostly translucent figures,\ncharacter sheet, reference sheet, model sheet, turnaround, grid, panels, split screen, collage, multiple views, duplicate character, two copies of the same character, clone, text, labels, caption, title, watermark, signature, transparent background, empty background, off-model, different face, different hairstyle, different eye color, inconsistent outfit, extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts",
+    "resolution": 768
+   }
+  },
+  {
+   "id": 24,
+   "type": "EmptyLatentImage",
+   "pos": [
+    2860.321728515625,
+    124
+   ],
+   "size": [
+    551.1173767089844,
+    130
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "width",
+     "name": "width",
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "height",
+     "name": "height",
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "batch_size",
+     "name": "batch_size",
+     "type": "INT",
+     "widget": {
+      "name": "batch_size"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "type": "LATENT",
+     "slot_index": 0,
+     "links": [
+      28
+     ]
+    }
+   ],
+   "title": "SCENE CANVAS — any multiple of 32 (auto-converted to the Qwen 2.1 latent)",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "EmptyLatentImage",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "width": true,
+      "height": true,
+      "batch_size": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    1024,
+    768,
+    1
+   ],
+   "widgets_values_named": {
+    "width": 1024,
+    "height": 768,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": 30,
+   "type": "UpscaleModelLoader",
+   "pos": [
+    3631.4391052246096,
+    124
+   ],
+   "size": [
+    280,
+    106
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "model_name",
+     "name": "model_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "model_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "UPSCALE_MODEL",
+     "name": "UPSCALE_MODEL",
+     "type": "UPSCALE_MODEL",
+     "slot_index": 0,
+     "links": [
+      21
+     ]
+    }
+   ],
+   "title": "Upscale model (x4, photo; anime_6B for drawn cards)",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "UpscaleModelLoader",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "model_name": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "RealESRGAN_x4plus.pth"
+   ],
+   "widgets_values_named": {
+    "model_name": "RealESRGAN_x4plus.pth"
+   }
+  },
+  {
+   "id": 31,
+   "type": "ImageRemoveAlpha+",
+   "pos": [
+    3631.4391052246096,
+    300
+   ],
+   "size": [
+    280,
+    80
+   ],
+   "flags": {},
+   "order": 21,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "IMAGE",
+     "link": 20
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      22
+     ]
+    }
+   ],
+   "title": "RGB for ESRGAN — Scene",
+   "properties": {
+    "cnr_id": "comfyui_essentials",
+    "ver": "1.1.0",
+    "Node name for S&R": "ImageRemoveAlpha+",
+    "ue_properties": {
+     "widget_ue_connectable": {},
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   }
+  },
+  {
+   "id": 32,
+   "type": "ImageUpscaleWithModel",
+   "pos": [
+    3631.4391052246096,
+    450
+   ],
+   "size": [
+    280,
+    80
+   ],
+   "flags": {},
+   "order": 22,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "upscale_model",
+     "name": "upscale_model",
+     "type": "UPSCALE_MODEL",
+     "link": 21
+    },
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "IMAGE",
+     "link": 22
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      23
+     ]
+    }
+   ],
+   "title": "x4 — Scene",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "ImageUpscaleWithModel",
+    "ue_properties": {
+     "widget_ue_connectable": {},
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   }
+  },
+  {
+   "id": 33,
+   "type": "ImageScaleBy",
+   "pos": [
+    3631.4391052246096,
+    600
+   ],
+   "size": [
+    280,
+    82
+   ],
+   "flags": {},
+   "order": 23,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "IMAGE",
+     "link": 23
+    },
+    {
+     "localized_name": "upscale_method",
+     "name": "upscale_method",
+     "type": "COMBO",
+     "widget": {
+      "name": "upscale_method"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "scale_by",
+     "name": "scale_by",
+     "type": "FLOAT",
+     "widget": {
+      "name": "scale_by"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      24
+     ]
+    }
+   ],
+   "title": "0.5 lanczos → net x2",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "ImageScaleBy",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "upscale_method": true,
+      "scale_by": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "lanczos",
+    0.5
+   ],
+   "widgets_values_named": {
+    "upscale_method": "lanczos",
+    "scale_by": 0.5
+   }
+  },
+  {
+   "id": 34,
+   "type": "SaveImage",
+   "pos": [
+    3631.4391052246096,
+    752
+   ],
+   "size": [
+    280,
+    302
+   ],
+   "flags": {},
+   "order": 24,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "link": 24
+    },
+    {
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": []
+    }
+   ],
+   "title": "Save x2 — Scene",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "SaveImage",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "filename_prefix": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "Character/kailani/scenes/scene_x2"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "Character/kailani/scenes/scene_x2"
+   }
+  },
+  {
+   "id": 39,
+   "type": "PrimitiveStringMultiline",
+   "pos": [
+    60,
+    1334
+   ],
+   "size": [
+    520.8347839355469,
+    340
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "value",
+     "name": "value",
+     "type": "STRING",
+     "widget": {
+      "name": "value"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "slot_index": 0,
+     "links": [
+      3
+     ]
+    }
+   ],
+   "title": "CHARACTER CARD — same card as the sheet flow; keep the two in sync",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "PrimitiveStringMultiline",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "value": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "Character name: KAILANI\nScope: Live-action film\nArt style: photorealistic photograph, real person, natural skin texture, DSLR photo, 85mm lens, soft natural daylight, sharp focus, true-to-life colors. Not a drawing, not an illustration, not anime, not a 3D render.\nCharacter: a lean athletic surfer woman in her early twenties with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, light turquoise-blue eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white."
+   ],
+   "widgets_values_named": {
+    "value": "Character name: KAILANI\nScope: Live-action film\nArt style: photorealistic photograph, real person, natural skin texture, DSLR photo, 85mm lens, soft natural daylight, sharp focus, true-to-life colors. Not a drawing, not an illustration, not anime, not a 3D render.\nCharacter: a lean athletic surfer woman in her early twenties with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, light turquoise-blue eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white."
+   }
+  },
+  {
+   "id": 40,
+   "type": "StringConcatenate",
+   "pos": [
+    945.0738891601562,
+    1720
+   ],
+   "size": [
+    440,
+    240
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "string_a",
+     "name": "string_a",
+     "type": "STRING",
+     "widget": {
+      "name": "string_a"
+     },
+     "link": 4
+    },
+    {
+     "localized_name": "string_b",
+     "name": "string_b",
+     "type": "STRING",
+     "widget": {
+      "name": "string_b"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "delimiter",
+     "name": "delimiter",
+     "type": "STRING",
+     "widget": {
+      "name": "delimiter"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "slot_index": 0,
+     "links": [
+      26
+     ]
+    }
+   ],
+   "title": "Append — pose sheet sentence (<image3>)",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "StringConcatenate",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "string_a": true,
+      "string_b": true,
+      "delimiter": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "",
+    "<image3> is the character's pose sheet: the same character in a grid of full-body poses. Keep the body language, anatomy and proportions consistent with <image3>.",
+    "\n\n"
+   ],
+   "widgets_values_named": {
+    "string_a": "",
+    "string_b": "<image3> is the character's pose sheet: the same character in a grid of full-body poses. Keep the body language, anatomy and proportions consistent with <image3>.",
+    "delimiter": "\n\n"
+   }
+  },
+  {
+   "id": 41,
+   "type": "StringConcatenate",
+   "pos": [
+    945.0738891601562,
+    2654
+   ],
+   "size": [
+    440,
+    240
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 4,
+   "inputs": [
+    {
+     "localized_name": "string_a",
+     "name": "string_a",
+     "type": "STRING",
+     "widget": {
+      "name": "string_a"
+     },
+     "link": 26
+    },
+    {
+     "localized_name": "string_b",
+     "name": "string_b",
+     "type": "STRING",
+     "widget": {
+      "name": "string_b"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "delimiter",
+     "name": "delimiter",
+     "type": "STRING",
+     "widget": {
+      "name": "delimiter"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "slot_index": 0,
+     "links": [
+      27
+     ]
+    }
+   ],
+   "title": "Append — costume sheet sentence (last image)",
+   "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.38.0",
+    "Node name for S&R": "StringConcatenate",
+    "ue_properties": {
+     "widget_ue_connectable": {
+      "string_a": true,
+      "string_b": true,
+      "delimiter": true
+     },
+     "version": "7.8",
+     "input_ue_unconnectable": {}
+    }
+   },
+   "widgets_values": [
+    "",
+    "The last reference image is the character's costume sheet: the same character in several outfits. If the scene below asks for one of those outfits, copy that outfit's design exactly from the last reference image; otherwise keep the default outfit.",
+    "\n\n"
+   ],
+   "widgets_values_named": {
+    "string_a": "",
+    "string_b": "The last reference image is the character's costume sheet: the same character in several outfits. If the scene below asks for one of those outfits, copy that outfit's design exactly from the last reference image; otherwise keep the default outfit.",
+    "delimiter": "\n\n"
+   }
+  },
+  {
+   "id": 42,
+   "type": "MarkdownNote",
+   "pos": [
+    60,
+    1744
+   ],
+   "size": [
+    520.8347839355469,
+    420
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "EXAMPLE CARD — Kailani, original anime (copy into the card to use)",
+   "properties": {},
+   "widgets_values": [
+    "# EXAMPLE CARD — Kailani, original anime version\n\nThe live card above is the **photorealistic** Kailani. This is the original drawn version, kept as an example of a non-photographic card. To use it, copy the block into the CHARACTER CARD node.\n\nStyle lives **only** in the card's `Art style:` line; the templates never name a medium. For a drawn card, also switch the upscaler back to `RealESRGAN_x4plus_anime_6B.pth`.\n\n```\nCharacter name: KAILANI\nScope: Animation\nArt style: anime style, clean line art, cel shading\nCharacter: a lean athletic teenage surfer girl with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, bright turquoise eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white.\n```\n"
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   4,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   4,
+   0,
+   6,
+   0,
+   "MODEL"
+  ],
+  [
+   3,
+   39,
+   0,
+   21,
+   0,
+   "STRING"
+  ],
+  [
+   4,
+   21,
+   0,
+   40,
+   0,
+   "STRING"
+  ],
+  [
+   5,
+   20,
+   0,
+   22,
+   1,
+   "STRING"
+  ],
+  [
+   14,
+   23,
+   0,
+   6,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   15,
+   23,
+   1,
+   6,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   17,
+   6,
+   0,
+   7,
+   0,
+   "LATENT"
+  ],
+  [
+   18,
+   3,
+   0,
+   7,
+   1,
+   "VAE"
+  ],
+  [
+   19,
+   7,
+   0,
+   8,
+   0,
+   "IMAGE"
+  ],
+  [
+   20,
+   7,
+   0,
+   31,
+   0,
+   "IMAGE"
+  ],
+  [
+   21,
+   30,
+   0,
+   32,
+   0,
+   "UPSCALE_MODEL"
+  ],
+  [
+   22,
+   31,
+   0,
+   32,
+   1,
+   "IMAGE"
+  ],
+  [
+   23,
+   32,
+   0,
+   33,
+   0,
+   "IMAGE"
+  ],
+  [
+   24,
+   33,
+   0,
+   34,
+   0,
+   "IMAGE"
+  ],
+  [
+   26,
+   40,
+   0,
+   41,
+   0,
+   "STRING"
+  ],
+  [
+   27,
+   41,
+   0,
+   22,
+   0,
+   "STRING"
+  ],
+  [
+   28,
+   24,
+   0,
+   6,
+   3,
+   "LATENT"
+  ],
+  [
+   7,
+   2,
+   0,
+   23,
+   0,
+   "CLIP"
+  ],
+  [
+   10,
+   11,
+   0,
+   23,
+   1,
+   "IMAGE"
+  ],
+  [
+   11,
+   12,
+   0,
+   23,
+   2,
+   "IMAGE"
+  ],
+  [
+   12,
+   13,
+   0,
+   23,
+   3,
+   "IMAGE"
+  ],
+  [
+   13,
+   14,
+   0,
+   23,
+   4,
+   "IMAGE"
+  ],
+  [
+   8,
+   3,
+   0,
+   23,
+   8,
+   "VAE"
+  ],
+  [
+   6,
+   22,
+   0,
+   23,
+   9,
+   "STRING"
+  ],
+  [
+   9,
+   15,
+   0,
+   23,
+   11,
+   "INT"
+  ]
+ ],
+ "groups": [
+  {
+   "id": 1,
+   "title": "00 — MODELS (Qwen-Image 2.1)",
+   "bounding": [
+    0,
+    0,
+    785.0738891601562,
+    694
+   ],
+   "color": "#3f789e",
+   "flags": {}
+  },
+  {
+   "id": 2,
+   "title": "01 — LORA STACK [bypass to disable]",
+   "bounding": [
+    0,
+    794,
+    549.2912963867187,
+    316
+   ],
+   "color": "#4f9d69",
+   "flags": {}
+  },
+  {
+   "id": 3,
+   "title": "CHARACTER CARD — identity text, same card as the sheet flow",
+   "bounding": [
+    0,
+    1210,
+    640.8347839355469,
+    1004
+   ],
+   "color": "#a1309b",
+   "flags": {}
+  },
+  {
+   "id": 4,
+   "title": "02 — REFERENCE SHEETS, required (<image1> three-view, <image2> expressions)",
+   "bounding": [
+    885.0738891601562,
+    0,
+    695.2478393554687,
+    1086
+   ],
+   "color": "#a1309b",
+   "flags": {}
+  },
+  {
+   "id": 5,
+   "title": "03 — SCENE PROMPT / ENCODE",
+   "bounding": [
+    1680.321728515625,
+    0,
+    1020.0000000000002,
+    1010
+   ],
+   "color": "#3f789e",
+   "flags": {}
+  },
+  {
+   "id": 6,
+   "title": "04 — SAMPLER / DECODE / SAVE",
+   "bounding": [
+    2800.321728515625,
+    0,
+    671.1173767089845,
+    1168
+   ],
+   "color": "#3f789e",
+   "flags": {}
+  },
+  {
+   "id": 7,
+   "title": "06 — SUPERSCALING x2 (ESRGAN x4 + 0.5 lanczos) [bypass to disable]",
+   "bounding": [
+    3571.4391052246096,
+    0,
+    400,
+    1114
+   ],
+   "color": "#b58b2a",
+   "flags": {}
+  },
+  {
+   "id": 8,
+   "title": "02b — POSE SHEET, optional (<image3>) [bypass to disable]",
+   "bounding": [
+    885.0738891601562,
+    1186,
+    560.0000000000001,
+    834
+   ],
+   "color": "#a1309b",
+   "flags": {}
+  },
+  {
+   "id": 9,
+   "title": "02c — COSTUME SHEET, optional (last image) [bypass to disable]",
+   "bounding": [
+    885.0738891601562,
+    2120,
+    560.0000000000001,
+    834
+   ],
+   "color": "#a1309b",
+   "flags": {}
+  }
+ ],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.8346084653054728,
+   "offset": [
+    -1040.9049877930306,
+    368.32757109681756
+   ]
+  },
+  "ue_links": [],
+  "links_added_by_ue": []
+ },
+ "version": 0.4
+}

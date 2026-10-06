@@ -1,0 +1,663 @@
+{
+  "id": "a7a54cef-ddc5-51fb-a6f5-411ea854c592",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "fe3e9f15-abac-5cf1-8cd4-e67284a0b557",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        190
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image_1",
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "image_2",
+          "name": "image_2",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "image_3",
+          "name": "image_3",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "image_4",
+          "name": "image_4",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "Sheet 2×2 — stitch four panels → save",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "filename_prefix"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "Character/x/sheet"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/x/sheet"
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "fe3e9f15-abac-5cf1-8cd4-e67284a0b557",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 4,
+          "lastLinkId": 9,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Sheet 2×2 — stitch four panels → save",
+        "description": "ImageStitch(1 right 2), ImageStitch(3 right 4), ImageStitch(top down bottom), spacing 0 → SaveImage.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            140
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1149.2333374023438,
+            0,
+            140,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "5856bd02-9617-5af0-8bc4-136f27ec9005",
+            "name": "image_1",
+            "type": "IMAGE",
+            "linkIds": [
+              4
+            ],
+            "localized_name": "image_1",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "51c86e33-851f-5add-a0b3-0a6e0365a5f4",
+            "name": "image_2",
+            "type": "IMAGE",
+            "linkIds": [
+              5
+            ],
+            "localized_name": "image_2",
+            "pos": [
+              -300,
+              40
+            ]
+          },
+          {
+            "id": "85618d2c-7ea1-526e-8379-070d91db2977",
+            "name": "image_3",
+            "type": "IMAGE",
+            "linkIds": [
+              6
+            ],
+            "localized_name": "image_3",
+            "pos": [
+              -300,
+              60
+            ]
+          },
+          {
+            "id": "4a3ec8a3-25bc-580d-b52c-c18e23836272",
+            "name": "image_4",
+            "type": "IMAGE",
+            "linkIds": [
+              7
+            ],
+            "localized_name": "image_4",
+            "pos": [
+              -300,
+              80
+            ]
+          },
+          {
+            "id": "f4e94d1d-4efa-5654-ab81-118b168193b0",
+            "name": "filename_prefix",
+            "type": "STRING",
+            "linkIds": [
+              8
+            ],
+            "localized_name": "filename_prefix",
+            "pos": [
+              -300,
+              100
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "e9c0bb0b-8088-5d15-9996-b6d0fd290bfd",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              9
+            ],
+            "localized_name": "IMAGE",
+            "pos": [
+              1169.2333374023438,
+              20
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "ImageStitch",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              309.23333740234375,
+              184
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image1",
+                "name": "image1",
+                "type": "IMAGE",
+                "link": 4
+              },
+              {
+                "localized_name": "image2",
+                "name": "image2",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 5
+              },
+              {
+                "localized_name": "direction",
+                "name": "direction",
+                "type": "COMBO",
+                "widget": {
+                  "name": "direction"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "match_image_size",
+                "name": "match_image_size",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "match_image_size"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "spacing_width",
+                "name": "spacing_width",
+                "type": "INT",
+                "widget": {
+                  "name": "spacing_width"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "spacing_color",
+                "name": "spacing_color",
+                "type": "COMBO",
+                "widget": {
+                  "name": "spacing_color"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  1
+                ]
+              }
+            ],
+            "title": "Stitch top row (three-view | expressions)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "ImageStitch",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "direction": true,
+                  "match_image_size": true,
+                  "spacing_width": true,
+                  "spacing_color": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "right",
+              true,
+              0,
+              "white"
+            ],
+            "widgets_values_named": {
+              "direction": "right",
+              "match_image_size": true,
+              "spacing_width": 0,
+              "spacing_color": "white"
+            }
+          },
+          {
+            "id": 2,
+            "type": "ImageStitch",
+            "pos": [
+              0,
+              294
+            ],
+            "size": [
+              288.04998779296875,
+              184
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image1",
+                "name": "image1",
+                "type": "IMAGE",
+                "link": 6
+              },
+              {
+                "localized_name": "image2",
+                "name": "image2",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 7
+              },
+              {
+                "localized_name": "direction",
+                "name": "direction",
+                "type": "COMBO",
+                "widget": {
+                  "name": "direction"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "match_image_size",
+                "name": "match_image_size",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "match_image_size"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "spacing_width",
+                "name": "spacing_width",
+                "type": "INT",
+                "widget": {
+                  "name": "spacing_width"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "spacing_color",
+                "name": "spacing_color",
+                "type": "COMBO",
+                "widget": {
+                  "name": "spacing_color"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  2
+                ]
+              }
+            ],
+            "title": "Stitch bottom row (poses | costumes)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "ImageStitch",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "direction": true,
+                  "match_image_size": true,
+                  "spacing_width": true,
+                  "spacing_color": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "right",
+              true,
+              0,
+              "white"
+            ],
+            "widgets_values_named": {
+              "direction": "right",
+              "match_image_size": true,
+              "spacing_width": 0,
+              "spacing_color": "white"
+            }
+          },
+          {
+            "id": 3,
+            "type": "ImageStitch",
+            "pos": [
+              389.23333740234375,
+              0
+            ],
+            "size": [
+              280,
+              184
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image1",
+                "name": "image1",
+                "type": "IMAGE",
+                "link": 1
+              },
+              {
+                "localized_name": "image2",
+                "name": "image2",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 2
+              },
+              {
+                "localized_name": "direction",
+                "name": "direction",
+                "type": "COMBO",
+                "widget": {
+                  "name": "direction"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "match_image_size",
+                "name": "match_image_size",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "match_image_size"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "spacing_width",
+                "name": "spacing_width",
+                "type": "INT",
+                "widget": {
+                  "name": "spacing_width"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "spacing_color",
+                "name": "spacing_color",
+                "type": "COMBO",
+                "widget": {
+                  "name": "spacing_color"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  3,
+                  9
+                ]
+              }
+            ],
+            "title": "Stitch final 2x2 sheet",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "ImageStitch",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "direction": true,
+                  "match_image_size": true,
+                  "spacing_width": true,
+                  "spacing_color": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "down",
+              true,
+              0,
+              "white"
+            ],
+            "widgets_values_named": {
+              "direction": "down",
+              "match_image_size": true,
+              "spacing_width": 0,
+              "spacing_color": "white"
+            }
+          },
+          {
+            "id": 4,
+            "type": "SaveImage",
+            "pos": [
+              749.2333374023438,
+              0
+            ],
+            "size": [
+              280,
+              302
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "link": 3
+              },
+              {
+                "localized_name": "filename_prefix",
+                "name": "filename_prefix",
+                "type": "STRING",
+                "widget": {
+                  "name": "filename_prefix"
+                },
+                "link": 8
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": []
+              }
+            ],
+            "title": "Save — FINAL SHEET x2 (2x2)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "SaveImage",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "filename_prefix": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "Character/kailani/sheet_x2"
+            ],
+            "widgets_values_named": {
+              "filename_prefix": "Character/kailani/sheet_x4"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": 3,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 2,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": 3,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": 4,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 4,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 5,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 1,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 6,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 7,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 2,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 8,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 4,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 9,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "sheet-2x2",
+      "id": "fe3e9f15-abac-5cf1-8cd4-e67284a0b557"
+    }
+  },
+  "version": 0.4
+}

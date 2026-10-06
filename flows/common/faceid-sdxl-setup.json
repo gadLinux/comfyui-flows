@@ -1,0 +1,1407 @@
+{
+  "id": "f98264ab-9d3b-52ca-9534-0af97c21e9bd",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "612271d6-050e-5a47-9c31-581689b089c2",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        142
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "card",
+          "name": "card",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "card"
+          }
+        },
+        {
+          "localized_name": "face_folder",
+          "name": "face_folder",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "face_folder"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": []
+        },
+        {
+          "localized_name": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": []
+        },
+        {
+          "localized_name": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": []
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": []
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": []
+        },
+        {
+          "localized_name": "bbox_detector",
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "links": []
+        }
+      ],
+      "title": "FaceID setup — SDXL + IPAdapter FaceID PlusV2 + face prompts",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "card"
+          ],
+          [
+            "-1",
+            "face_folder"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "",
+        ""
+      ],
+      "widgets_values_named": {
+        "card": "",
+        "face_folder": ""
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "612271d6-050e-5a47-9c31-581689b089c2",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 11,
+          "lastLinkId": 18,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "FaceID setup — SDXL + IPAdapter FaceID PlusV2 + face prompts",
+        "description": "Loads the SDXL checkpoint, patches it with FaceID from every image in a folder (256 px margin, InsightFace buffalo_l on ROCM), encodes the card face prompt + negative, loads the YOLOv8m face detector. Feeds face-detail-rgba.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            80
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            2406.5956787109376,
+            0,
+            140,
+            160
+          ]
+        },
+        "inputs": [
+          {
+            "id": "99688870-60ee-52b9-a3de-65dfe2288cbf",
+            "name": "card",
+            "type": "STRING",
+            "linkIds": [
+              11
+            ],
+            "localized_name": "card",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "d9af3fbb-9f3f-5eb8-a791-3d865d3207d8",
+            "name": "face_folder",
+            "type": "STRING",
+            "linkIds": [
+              12
+            ],
+            "localized_name": "face_folder",
+            "pos": [
+              -300,
+              40
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "69a38f57-6d9e-5391-b913-328b7cba70a0",
+            "name": "MODEL",
+            "type": "MODEL",
+            "linkIds": [
+              13
+            ],
+            "localized_name": "MODEL",
+            "pos": [
+              2426.5956787109376,
+              20
+            ]
+          },
+          {
+            "id": "fa040b1d-3544-573f-9c02-f01121c0db83",
+            "name": "CLIP",
+            "type": "CLIP",
+            "linkIds": [
+              14
+            ],
+            "localized_name": "CLIP",
+            "pos": [
+              2426.5956787109376,
+              40
+            ]
+          },
+          {
+            "id": "1d93daef-2142-5497-b402-dd8eda6a167b",
+            "name": "VAE",
+            "type": "VAE",
+            "linkIds": [
+              15
+            ],
+            "localized_name": "VAE",
+            "pos": [
+              2426.5956787109376,
+              60
+            ]
+          },
+          {
+            "id": "d081225c-473a-5df0-b623-96f60e2cf3f7",
+            "name": "positive",
+            "type": "CONDITIONING",
+            "linkIds": [
+              16
+            ],
+            "localized_name": "positive",
+            "pos": [
+              2426.5956787109376,
+              80
+            ]
+          },
+          {
+            "id": "1dbf15bc-3d7d-5614-8880-c1a4ab872494",
+            "name": "negative",
+            "type": "CONDITIONING",
+            "linkIds": [
+              17
+            ],
+            "localized_name": "negative",
+            "pos": [
+              2426.5956787109376,
+              100
+            ]
+          },
+          {
+            "id": "01fe0279-4fe6-5753-b090-4d951524646b",
+            "name": "bbox_detector",
+            "type": "BBOX_DETECTOR",
+            "linkIds": [
+              18
+            ],
+            "localized_name": "bbox_detector",
+            "pos": [
+              2426.5956787109376,
+              120
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "CheckpointLoaderSimple",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              500,
+              98
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "ckpt_name",
+                "name": "ckpt_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "ckpt_name"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "MODEL",
+                "name": "MODEL",
+                "type": "MODEL",
+                "slot_index": 0,
+                "links": [
+                  1
+                ]
+              },
+              {
+                "localized_name": "CLIP",
+                "name": "CLIP",
+                "type": "CLIP",
+                "slot_index": 1,
+                "links": [
+                  9,
+                  10,
+                  14
+                ]
+              },
+              {
+                "localized_name": "VAE",
+                "name": "VAE",
+                "type": "VAE",
+                "slot_index": 2,
+                "links": [
+                  15
+                ]
+              }
+            ],
+            "title": "FaceID base — SDXL checkpoint (photoreal; swap for drawn cards)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "CheckpointLoaderSimple",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "ckpt_name": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "RealVisXL_V4.0.safetensors"
+            ],
+            "widgets_values_named": {
+              "ckpt_name": "RealVisXL_V4.0.safetensors"
+            }
+          },
+          {
+            "id": 2,
+            "type": "IPAdapterUnifiedLoaderFaceID",
+            "pos": [
+              580,
+              0
+            ],
+            "size": [
+              440,
+              158
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 1
+              },
+              {
+                "localized_name": "ipadapter",
+                "name": "ipadapter",
+                "shape": 7,
+                "type": "IPADAPTER",
+                "link": null
+              },
+              {
+                "localized_name": "preset",
+                "name": "preset",
+                "type": "COMBO",
+                "widget": {
+                  "name": "preset"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "lora_strength",
+                "name": "lora_strength",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "lora_strength"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "provider",
+                "name": "provider",
+                "type": "COMBO",
+                "widget": {
+                  "name": "provider"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "MODEL",
+                "name": "MODEL",
+                "type": "MODEL",
+                "slot_index": 0,
+                "links": [
+                  2
+                ]
+              },
+              {
+                "localized_name": "ipadapter",
+                "name": "ipadapter",
+                "type": "IPADAPTER",
+                "slot_index": 1,
+                "links": [
+                  3
+                ]
+              }
+            ],
+            "title": "IPAdapter FaceID PlusV2 loader (+ its LoRA)",
+            "properties": {
+              "cnr_id": "comfyui_ipadapter_plus",
+              "ver": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+              "Node name for S&R": "IPAdapterUnifiedLoaderFaceID",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "preset": true,
+                  "lora_strength": true,
+                  "provider": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "FACEID PLUS V2",
+              0.6,
+              "ROCM"
+            ],
+            "widgets_values_named": {
+              "preset": "FACEID PLUS V2",
+              "lora_strength": 0.6,
+              "provider": "ROCM"
+            }
+          },
+          {
+            "id": 3,
+            "type": "IPAdapterInsightFaceLoader",
+            "pos": [
+              580,
+              268
+            ],
+            "size": [
+              666.5956787109375,
+              82
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "provider",
+                "name": "provider",
+                "type": "COMBO",
+                "widget": {
+                  "name": "provider"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "model_name",
+                "name": "model_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "model_name"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "INSIGHTFACE",
+                "name": "INSIGHTFACE",
+                "type": "INSIGHTFACE",
+                "slot_index": 0,
+                "links": [
+                  7
+                ]
+              }
+            ],
+            "title": "InsightFace (ROCM → MIGraphX via onnxruntime hook, buffalo_l) — detects + aligns each face",
+            "properties": {
+              "cnr_id": "comfyui_ipadapter_plus",
+              "ver": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+              "Node name for S&R": "IPAdapterInsightFaceLoader",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "provider": true,
+                  "model_name": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "ROCM",
+              "buffalo_l"
+            ],
+            "widgets_values_named": {
+              "provider": "ROCM",
+              "model_name": "buffalo_l"
+            }
+          },
+          {
+            "id": 4,
+            "type": "LoadImagesFromFolderKJ",
+            "pos": [
+              0,
+              208
+            ],
+            "size": [
+              498.7695678710937,
+              262
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "folder",
+                "name": "folder",
+                "type": "STRING",
+                "widget": {
+                  "name": "folder"
+                },
+                "link": 12
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "keep_aspect_ratio",
+                "name": "keep_aspect_ratio",
+                "type": "COMBO",
+                "widget": {
+                  "name": "keep_aspect_ratio"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "image_load_cap",
+                "name": "image_load_cap",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "image_load_cap"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "start_index",
+                "name": "start_index",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "start_index"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "include_subfolders",
+                "name": "include_subfolders",
+                "shape": 7,
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "include_subfolders"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  5
+                ]
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "type": "MASK",
+                "slot_index": 1,
+                "links": []
+              },
+              {
+                "localized_name": "count",
+                "name": "count",
+                "type": "INT",
+                "slot_index": 2,
+                "links": []
+              },
+              {
+                "localized_name": "image_path",
+                "name": "image_path",
+                "type": "STRING",
+                "slot_index": 3,
+                "links": []
+              }
+            ],
+            "title": "FACE PHOTOS FOLDER — every image in it is used (path on the host)",
+            "properties": {
+              "cnr_id": "comfyui-kjnodes",
+              "ver": "1.5.2",
+              "Node name for S&R": "LoadImagesFromFolderKJ",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "folder": true,
+                  "width": true,
+                  "height": true,
+                  "keep_aspect_ratio": true,
+                  "image_load_cap": true,
+                  "start_index": true,
+                  "include_subfolders": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "/home/gaguilar/sources/images/Ale/",
+              768,
+              768,
+              "pad",
+              0,
+              0,
+              false
+            ],
+            "widgets_values_named": {
+              "folder": "/home/gaguilar/sources/images/Ale/",
+              "width": 768,
+              "height": 768,
+              "keep_aspect_ratio": "pad",
+              "image_load_cap": 0,
+              "start_index": 0,
+              "include_subfolders": false
+            }
+          },
+          {
+            "id": 5,
+            "type": "ImagePadForOutpaint",
+            "pos": [
+              580,
+              460
+            ],
+            "size": [
+              611.0521606445312,
+              180
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 5
+              },
+              {
+                "localized_name": "left",
+                "name": "left",
+                "type": "INT",
+                "widget": {
+                  "name": "left"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "top",
+                "name": "top",
+                "type": "INT",
+                "widget": {
+                  "name": "top"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "right",
+                "name": "right",
+                "type": "INT",
+                "widget": {
+                  "name": "right"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "bottom",
+                "name": "bottom",
+                "type": "INT",
+                "widget": {
+                  "name": "bottom"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "feathering",
+                "name": "feathering",
+                "type": "INT",
+                "widget": {
+                  "name": "feathering"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  6
+                ]
+              },
+              {
+                "localized_name": "MASK",
+                "name": "MASK",
+                "type": "MASK",
+                "slot_index": 1,
+                "links": []
+              }
+            ],
+            "title": "FACE MARGIN 256px gray — insightface misses faces that fill the frame (close selfies)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "ImagePadForOutpaint",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "left": true,
+                  "top": true,
+                  "right": true,
+                  "bottom": true,
+                  "feathering": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              256,
+              256,
+              256,
+              256,
+              0
+            ],
+            "widgets_values_named": {
+              "left": 256,
+              "top": 256,
+              "right": 256,
+              "bottom": 256,
+              "feathering": 0
+            }
+          },
+          {
+            "id": 6,
+            "type": "IPAdapterFaceID",
+            "pos": [
+              1326.5956787109376,
+              0
+            ],
+            "size": [
+              440,
+              322
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 2
+              },
+              {
+                "localized_name": "ipadapter",
+                "name": "ipadapter",
+                "type": "IPADAPTER",
+                "link": 3
+              },
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 6
+              },
+              {
+                "localized_name": "image_negative",
+                "name": "image_negative",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "localized_name": "attn_mask",
+                "name": "attn_mask",
+                "shape": 7,
+                "type": "MASK",
+                "link": null
+              },
+              {
+                "localized_name": "clip_vision",
+                "name": "clip_vision",
+                "shape": 7,
+                "type": "CLIP_VISION",
+                "link": null
+              },
+              {
+                "localized_name": "insightface",
+                "name": "insightface",
+                "shape": 7,
+                "type": "INSIGHTFACE",
+                "link": 7
+              },
+              {
+                "localized_name": "weight",
+                "name": "weight",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "weight"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "weight_faceidv2",
+                "name": "weight_faceidv2",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "weight_faceidv2"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "weight_type",
+                "name": "weight_type",
+                "type": "COMBO",
+                "widget": {
+                  "name": "weight_type"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "combine_embeds",
+                "name": "combine_embeds",
+                "type": "COMBO",
+                "widget": {
+                  "name": "combine_embeds"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "start_at",
+                "name": "start_at",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "start_at"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "end_at",
+                "name": "end_at",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "end_at"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "embeds_scaling",
+                "name": "embeds_scaling",
+                "type": "COMBO",
+                "widget": {
+                  "name": "embeds_scaling"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "MODEL",
+                "name": "MODEL",
+                "type": "MODEL",
+                "slot_index": 0,
+                "links": [
+                  13
+                ]
+              },
+              {
+                "localized_name": "face_image",
+                "name": "face_image",
+                "type": "IMAGE",
+                "slot_index": 1,
+                "links": [
+                  4
+                ]
+              }
+            ],
+            "title": "Apply FaceID — all folder faces (concat)",
+            "properties": {
+              "cnr_id": "comfyui_ipadapter_plus",
+              "ver": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+              "Node name for S&R": "IPAdapterFaceID",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "weight": true,
+                  "weight_faceidv2": true,
+                  "weight_type": true,
+                  "combine_embeds": true,
+                  "start_at": true,
+                  "end_at": true,
+                  "embeds_scaling": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              0.85,
+              1,
+              "linear",
+              "concat",
+              0,
+              1,
+              "V only"
+            ],
+            "widgets_values_named": {
+              "weight": 0.85,
+              "weight_faceidv2": 1,
+              "weight_type": "linear",
+              "combine_embeds": "concat",
+              "start_at": 0,
+              "end_at": 1,
+              "embeds_scaling": "V only"
+            }
+          },
+          {
+            "id": 7,
+            "type": "PreviewImage",
+            "pos": [
+              1846.5956787109376,
+              0
+            ],
+            "size": [
+              373.59564819335935,
+              440
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "link": 4
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": []
+              }
+            ],
+            "title": "NORMALIZED FACES — what FaceID actually sees",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "PreviewImage",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 8,
+            "type": "StringConcatenate",
+            "pos": [
+              1326.5956787109376,
+              432
+            ],
+            "size": [
+              440,
+              220
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 11
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "delimiter",
+                "name": "delimiter",
+                "type": "STRING",
+                "widget": {
+                  "name": "delimiter"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "slot_index": 0,
+                "links": [
+                  8
+                ]
+              }
+            ],
+            "title": "Face prompt — card + close-up template",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "StringConcatenate",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "string_a": true,
+                  "string_b": true,
+                  "delimiter": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "",
+              "Close-up of the character's face: the same person, natural facial proportions, detailed eyes, the face matching the rest of the image in the art style given above.",
+              "\n\n"
+            ],
+            "widgets_values_named": {
+              "string_a": "",
+              "string_b": "Close-up of the character's face: the same person, natural facial proportions, detailed eyes, the face matching the rest of the image in the art style given above.",
+              "delimiter": "\n\n"
+            }
+          },
+          {
+            "id": 9,
+            "type": "CLIPTextEncode",
+            "pos": [
+              1846.5956787109376,
+              550
+            ],
+            "size": [
+              440,
+              160
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 9
+              },
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 8
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "slot_index": 0,
+                "links": [
+                  16
+                ]
+              }
+            ],
+            "title": "Face prompt (SDXL) — from the card",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "CLIPTextEncode",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "text": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              ""
+            ],
+            "widgets_values_named": {
+              "text": ""
+            }
+          },
+          {
+            "id": 10,
+            "type": "CLIPTextEncode",
+            "pos": [
+              1846.5956787109376,
+              820
+            ],
+            "size": [
+              440,
+              160
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 10
+              },
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "slot_index": 0,
+                "links": [
+                  17
+                ]
+              }
+            ],
+            "title": "Face negative (SDXL)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "CLIPTextEncode",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "text": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "deformed face, asymmetrical eyes, extra eyes, distorted features, blurry, lowres, jpeg artifacts, watermark, text"
+            ],
+            "widgets_values_named": {
+              "text": "deformed face, asymmetrical eyes, extra eyes, distorted features, blurry, lowres, jpeg artifacts, watermark, text"
+            }
+          },
+          {
+            "id": 11,
+            "type": "UltralyticsDetectorProvider",
+            "pos": [
+              1846.5956787109376,
+              1090
+            ],
+            "size": [
+              440,
+              106
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model_name",
+                "name": "model_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "model_name"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "BBOX_DETECTOR",
+                "name": "BBOX_DETECTOR",
+                "type": "BBOX_DETECTOR",
+                "slot_index": 0,
+                "links": [
+                  18
+                ]
+              },
+              {
+                "localized_name": "SEGM_DETECTOR",
+                "name": "SEGM_DETECTOR",
+                "type": "SEGM_DETECTOR",
+                "slot_index": 1,
+                "links": []
+              }
+            ],
+            "title": "Face detector (YOLOv8m)",
+            "properties": {
+              "cnr_id": "comfyui-impact-subpack",
+              "ver": "1.3.5",
+              "Node name for S&R": "UltralyticsDetectorProvider",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "model_name": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "bbox/face_yolov8m.pt"
+            ],
+            "widgets_values_named": {
+              "model_name": "bbox/face_yolov8m.pt"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 2,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": 6,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 3,
+            "origin_id": 2,
+            "origin_slot": 1,
+            "target_id": 6,
+            "target_slot": 1,
+            "type": "IPADAPTER"
+          },
+          {
+            "id": 4,
+            "origin_id": 6,
+            "origin_slot": 1,
+            "target_id": 7,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 5,
+            "origin_id": 4,
+            "origin_slot": 0,
+            "target_id": 5,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 6,
+            "origin_id": 5,
+            "origin_slot": 0,
+            "target_id": 6,
+            "target_slot": 2,
+            "type": "IMAGE"
+          },
+          {
+            "id": 7,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": 6,
+            "target_slot": 6,
+            "type": "INSIGHTFACE"
+          },
+          {
+            "id": 8,
+            "origin_id": 8,
+            "origin_slot": 0,
+            "target_id": 9,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 9,
+            "origin_id": 1,
+            "origin_slot": 1,
+            "target_id": 9,
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 10,
+            "origin_id": 1,
+            "origin_slot": 1,
+            "target_id": 10,
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 11,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 8,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 12,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 4,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 13,
+            "origin_id": 6,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 14,
+            "origin_id": 1,
+            "origin_slot": 1,
+            "target_id": -20,
+            "target_slot": 1,
+            "type": "CLIP"
+          },
+          {
+            "id": 15,
+            "origin_id": 1,
+            "origin_slot": 2,
+            "target_id": -20,
+            "target_slot": 2,
+            "type": "VAE"
+          },
+          {
+            "id": 16,
+            "origin_id": 9,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 3,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 17,
+            "origin_id": 10,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 4,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 18,
+            "origin_id": 11,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 5,
+            "type": "BBOX_DETECTOR"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "faceid-sdxl-setup",
+      "id": "612271d6-050e-5a47-9c31-581689b089c2"
+    }
+  },
+  "version": 0.4
+}

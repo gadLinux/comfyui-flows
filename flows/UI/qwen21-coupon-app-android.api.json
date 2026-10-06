@@ -1,0 +1,173 @@
+{
+  "1": {
+    "class_type": "UnetLoaderGGUF",
+    "inputs": {
+      "unet_name": "qwen-image-2.1-Q8_0.gguf"
+    },
+    "_meta": {
+      "title": "Qwen-Image 2.1 (Q8_0 GGUF)"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3.5_9b_qwen_image_2.1_pe_t2i.int8_convrot.safetensors",
+      "type": "qwen_image",
+      "device": "cpu"
+    },
+    "_meta": {
+      "title": "Text encoder (CPU)"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+    },
+    "_meta": {
+      "title": "VAE"
+    }
+  },
+  "4": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "prompt": "Professional Android mobile app UI design mockup, a single app screen for a coupon rewards and redemption campaign. Material Design 3 style, flat vector interface, built on a strict 8-point grid with a 12-column layout and clear top-to-bottom visual hierarchy. Top app bar with a back chevron, the title text \"Coupons\" and a filter icon. Full-width hero campaign card in a vivid indigo to violet gradient with a bold white headline \"GET 30% OFF\", the subtitle \"On all orders this week\" and a solid white pill-shaped \"Redeem now\" button. Below it, a row of five rounded category filter chips. Then a vertical list of three white rounded coupon cards on an off-white background, each card split by a dashed perforation line, the left side showing a large discount badge reading \"20% OFF\" and the right side showing a merchant name, a small grey expiry caption and a thin coral outline \"Redeem\" button. A persistent bottom navigation bar with four evenly spaced outline icons labelled Home, Coupons, Wallet and Profile. Generous whitespace between elements, consistent 16dp corner radius, subtle soft ambient shadows under each card, a restrained palette of off-white, deep indigo, coral accent and neutral grey, clean geometric sans-serif typography with a consistent type scale, one primary action per section, high contrast accessible readable labels, crisp vector edges, Figma portfolio case study presentation, centered composition on a plain background, no device frame, no hands",
+      "negative_prompt": "photograph, photo, photorealistic, 3d render, cgi, wooden desk, hand holding phone, device bezel, phone mockup frame, person, face, hands, illustration, painting, anime, cartoon, sketch, blurry, out of focus, low resolution, jpeg artifacts, noise, grain, garbled text, misspelled text, illegible text, warped letters, distorted typography, scrambled text, duplicated text, overlapping text, text overflow, random characters, cluttered layout, busy composition, crowded elements, elements overlapping, elements cut off, cropped screen, misaligned grid, uneven spacing, inconsistent margins, off-grid elements, clashing colors, oversaturated neon, low contrast, poor contrast, muddy colors, rainbow gradient, excessive drop shadows, glassmorphism, neumorphism, busy background pattern, watermark, signature, logo, brand name, lorem ipsum, placeholder text, multiple screens, split screen, grid of mockups, storyboard, wireframe sketch, cluttered icons, mixed icon styles, distorted icons, stretched, low quality, amateur, ugly, outdated skeuomorphic, beveled, glossy 3d buttons, gradient buttons",
+      "resolution": 768
+    },
+    "_meta": {
+      "title": "Prompt \u2014 Android coupon app (768 base)"
+    }
+  },
+  "5": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "4",
+        0
+      ],
+      "negative": [
+        "4",
+        1
+      ],
+      "latent_image": [
+        "4",
+        2
+      ],
+      "seed": 1337,
+      "steps": 30,
+      "cfg": 4,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1
+    },
+    "_meta": {
+      "title": "Sampler \u2014 30 steps / cfg 4.0 (base model, no LoRA)"
+    }
+  },
+  "6": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "5",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "UpscaleModelLoader",
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    },
+    "_meta": {
+      "title": "Upscaler 4x-UltraSharp"
+    }
+  },
+  "8": {
+    "class_type": "ImageUpscaleWithModel",
+    "inputs": {
+      "upscale_model": [
+        "7",
+        0
+      ],
+      "image": [
+        "13",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "UPSCALE x4 -> 3072 (UltraSharp)"
+    }
+  },
+  "9": {
+    "class_type": "Image Resize (rgthree)",
+    "inputs": {
+      "image": [
+        "8",
+        0
+      ],
+      "measurement": "pixels",
+      "width": 1920,
+      "height": 1920,
+      "fit": "contain",
+      "method": "lanczos"
+    },
+    "_meta": {
+      "title": "FullHD 1920x1920 (lanczos)"
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "filename_prefix": "UI/coupon-app-android"
+    },
+    "_meta": {
+      "title": "Save FullHD UI mockup"
+    }
+  },
+  "13": {
+    "class_type": "ImageRemoveAlpha+",
+    "inputs": {
+      "image": [
+        "6",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Drop VAE alpha (RGBA->RGB for ESRGAN)"
+    }
+  },
+  "14": {
+    "class_type": "TorchCompileModel",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "backend": "inductor"
+    },
+    "_meta": {
+      "title": "TorchCompile \u2014 inductor (cache keyed by latent res)"
+    }
+  }
+}

@@ -1,0 +1,524 @@
+{
+  "id": "a8a14e63-a9a1-5157-93b4-8410d3c76cee",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "4022d213-2334-52fa-8193-f8b7b8ad1d69",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        166
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "frames",
+          "name": "frames",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "fps",
+          "name": "fps",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "fps"
+          }
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "RIFE x2 interpolation → mp4",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "fps"
+          ],
+          [
+            "-1",
+            "filename_prefix"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        32,
+        "Character/kailani/video/scene-surf-32fps"
+      ],
+      "widgets_values_named": {
+        "fps": 32,
+        "filename_prefix": "Character/kailani/video/scene-surf-32fps"
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "4022d213-2334-52fa-8193-f8b7b8ad1d69",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 3,
+          "lastLinkId": 6,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "RIFE x2 interpolation → mp4",
+        "description": "RIFE VFI (rife49, x2) → CreateVideo(fps) → SaveVideo. Bypass the instance to skip interpolation.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            100
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1540,
+            0,
+            140,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "1df0b908-83f0-5262-b965-62d0c8026404",
+            "name": "frames",
+            "type": "IMAGE",
+            "linkIds": [
+              3
+            ],
+            "localized_name": "frames",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "19541034-d889-512f-a6ab-d1817801de58",
+            "name": "fps",
+            "type": "FLOAT",
+            "linkIds": [
+              4
+            ],
+            "localized_name": "fps",
+            "pos": [
+              -300,
+              40
+            ]
+          },
+          {
+            "id": "2447ccf9-6db2-5c77-9e3d-48935fb14018",
+            "name": "filename_prefix",
+            "type": "STRING",
+            "linkIds": [
+              5
+            ],
+            "localized_name": "filename_prefix",
+            "pos": [
+              -300,
+              60
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "ccd05aa6-4086-53f7-8222-4a73b8fa402b",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              6
+            ],
+            "localized_name": "IMAGE",
+            "pos": [
+              1560,
+              20
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "RIFE VFI",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              420,
+              330
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "ckpt_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "ckpt_name"
+                },
+                "link": null
+              },
+              {
+                "name": "frames",
+                "type": "IMAGE",
+                "link": 3
+              },
+              {
+                "name": "clear_cache_after_n_frames",
+                "type": "INT",
+                "widget": {
+                  "name": "clear_cache_after_n_frames"
+                },
+                "link": null
+              },
+              {
+                "name": "multiplier",
+                "type": "INT",
+                "widget": {
+                  "name": "multiplier"
+                },
+                "link": null
+              },
+              {
+                "name": "fast_mode",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "fast_mode"
+                },
+                "link": null
+              },
+              {
+                "name": "ensemble",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "ensemble"
+                },
+                "link": null
+              },
+              {
+                "name": "scale_factor",
+                "type": "COMBO",
+                "widget": {
+                  "name": "scale_factor"
+                },
+                "link": null
+              },
+              {
+                "name": "dtype",
+                "type": "COMBO",
+                "widget": {
+                  "name": "dtype"
+                },
+                "link": null
+              },
+              {
+                "name": "torch_compile",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "torch_compile"
+                },
+                "link": null
+              },
+              {
+                "name": "batch_size",
+                "type": "INT",
+                "widget": {
+                  "name": "batch_size"
+                },
+                "link": null
+              },
+              {
+                "name": "optional_interpolation_states",
+                "type": "INTERPOLATION_STATES",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  1,
+                  6
+                ],
+                "slot_index": 0
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "RIFE VFI"
+            },
+            "widgets_values": [
+              "rife49.pth",
+              10,
+              2,
+              true,
+              true,
+              1,
+              "float32",
+              false,
+              1
+            ],
+            "title": "RIFE x2 interpolation (16 → 32 fps)",
+            "widgets_values_named": {
+              "ckpt_name": "rife49.pth",
+              "clear_cache_after_n_frames": 10,
+              "multiplier": 2,
+              "fast_mode": true,
+              "ensemble": true,
+              "scale_factor": 1,
+              "dtype": "float32",
+              "torch_compile": false,
+              "batch_size": 1
+            }
+          },
+          {
+            "id": 2,
+            "type": "CreateVideo",
+            "pos": [
+              500,
+              0
+            ],
+            "size": [
+              420,
+              130
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "images",
+                "type": "IMAGE",
+                "link": 1
+              },
+              {
+                "name": "fps",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "fps"
+                },
+                "link": 4
+              },
+              {
+                "name": "audio",
+                "type": "AUDIO",
+                "link": null
+              },
+              {
+                "name": "bit_depth",
+                "type": "COMBO",
+                "widget": {
+                  "name": "bit_depth"
+                },
+                "link": null
+              },
+              {
+                "name": "color_space",
+                "type": "COMBO",
+                "widget": {
+                  "name": "color_space"
+                },
+                "link": null
+              },
+              {
+                "name": "codec",
+                "type": "COMBO",
+                "widget": {
+                  "name": "codec"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "name": "VIDEO",
+                "type": "VIDEO",
+                "links": [
+                  2
+                ],
+                "slot_index": 0
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "CreateVideo"
+            },
+            "widgets_values": [
+              32,
+              "auto",
+              "sRGB",
+              "none"
+            ],
+            "title": "Frames → video (32 fps)",
+            "widgets_values_named": {
+              "fps": 32,
+              "bit_depth": "auto",
+              "color_space": "sRGB",
+              "codec": "none"
+            }
+          },
+          {
+            "id": 3,
+            "type": "SaveVideo",
+            "pos": [
+              1000,
+              0
+            ],
+            "size": [
+              420,
+              420
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "video",
+                "type": "VIDEO",
+                "link": 2
+              },
+              {
+                "name": "filename_prefix",
+                "type": "STRING",
+                "widget": {
+                  "name": "filename_prefix"
+                },
+                "link": 5
+              },
+              {
+                "name": "format",
+                "type": "COMFY_DYNAMICCOMBO_V3",
+                "widget": {
+                  "name": "format"
+                },
+                "link": null
+              },
+              {
+                "name": "codec",
+                "type": "COMFY_DYNAMICCOMBO_V3",
+                "widget": {
+                  "name": "codec"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "name": "video",
+                "type": "VIDEO",
+                "links": [],
+                "slot_index": 0
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "SaveVideo"
+            },
+            "widgets_values": [
+              "Character/kailani/video/scene-surf-32fps",
+              "auto",
+              "auto"
+            ],
+            "title": "Save video (32 fps smooth)",
+            "widgets_values_named": {
+              "filename_prefix": "Character/kailani/video/scene-surf-32fps",
+              "format": "auto",
+              "codec": "auto"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 2,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": 3,
+            "target_slot": 0,
+            "type": "VIDEO"
+          },
+          {
+            "id": 3,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 4,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 2,
+            "target_slot": 1,
+            "type": "FLOAT"
+          },
+          {
+            "id": 5,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 3,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 6,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "rife-x2-video-save",
+      "id": "4022d213-2334-52fa-8193-f8b7b8ad1d69"
+    }
+  },
+  "version": 0.4
+}

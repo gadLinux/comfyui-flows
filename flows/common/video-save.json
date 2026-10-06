@@ -1,0 +1,379 @@
+{
+  "id": "edf5aa4a-a751-54c7-a722-7605cbe4cc00",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "271b0d7a-835f-51e8-a1a7-5659df6feff7",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        190
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "frames",
+          "name": "frames",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "fps",
+          "name": "fps",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "fps"
+          }
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "outputs": [],
+      "title": "Frames → mp4 (optional audio)",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "fps"
+          ],
+          [
+            "-1",
+            "filename_prefix"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        16,
+        "Character/kailani/video/scene-surf"
+      ],
+      "widgets_values_named": {
+        "fps": 16,
+        "filename_prefix": "Character/kailani/video/scene-surf"
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "271b0d7a-835f-51e8-a1a7-5659df6feff7",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 2,
+          "lastLinkId": 5,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Frames → mp4 (optional audio)",
+        "description": "CreateVideo(fps, optional audio) → SaveVideo.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            120
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            940,
+            0,
+            140,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "e0a06c1d-62c5-57f3-afa7-af517948f593",
+            "name": "frames",
+            "type": "IMAGE",
+            "linkIds": [
+              2
+            ],
+            "localized_name": "frames",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "3a76bfcd-dfe7-5f11-9adf-bca4cea49d54",
+            "name": "audio",
+            "type": "AUDIO",
+            "linkIds": [
+              3
+            ],
+            "localized_name": "audio",
+            "pos": [
+              -300,
+              40
+            ]
+          },
+          {
+            "id": "80486e05-5f16-5dae-b12f-30589ba3f9ab",
+            "name": "fps",
+            "type": "FLOAT",
+            "linkIds": [
+              4
+            ],
+            "localized_name": "fps",
+            "pos": [
+              -300,
+              60
+            ]
+          },
+          {
+            "id": "82fe6988-7a37-5a7f-ad2e-0d676f8e8692",
+            "name": "filename_prefix",
+            "type": "STRING",
+            "linkIds": [
+              5
+            ],
+            "localized_name": "filename_prefix",
+            "pos": [
+              -300,
+              80
+            ]
+          }
+        ],
+        "outputs": [],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "CreateVideo",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              320,
+              130
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "images",
+                "type": "IMAGE",
+                "link": 2
+              },
+              {
+                "name": "fps",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "fps"
+                },
+                "link": 4
+              },
+              {
+                "name": "audio",
+                "type": "AUDIO",
+                "link": 3
+              },
+              {
+                "name": "bit_depth",
+                "type": "COMBO",
+                "widget": {
+                  "name": "bit_depth"
+                },
+                "link": null
+              },
+              {
+                "name": "color_space",
+                "type": "COMBO",
+                "widget": {
+                  "name": "color_space"
+                },
+                "link": null
+              },
+              {
+                "name": "codec",
+                "type": "COMBO",
+                "widget": {
+                  "name": "codec"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "name": "VIDEO",
+                "type": "VIDEO",
+                "links": [
+                  1
+                ],
+                "slot_index": 0
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "CreateVideo"
+            },
+            "widgets_values": [
+              16,
+              "auto",
+              "sRGB",
+              "none"
+            ],
+            "title": "Frames → video (16 fps)",
+            "widgets_values_named": {
+              "fps": 16,
+              "bit_depth": "auto",
+              "color_space": "sRGB",
+              "codec": "none"
+            }
+          },
+          {
+            "id": 2,
+            "type": "SaveVideo",
+            "pos": [
+              400,
+              0
+            ],
+            "size": [
+              420,
+              420
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "video",
+                "type": "VIDEO",
+                "link": 1
+              },
+              {
+                "name": "filename_prefix",
+                "type": "STRING",
+                "widget": {
+                  "name": "filename_prefix"
+                },
+                "link": 5
+              },
+              {
+                "name": "format",
+                "type": "COMFY_DYNAMICCOMBO_V3",
+                "widget": {
+                  "name": "format"
+                },
+                "link": null
+              },
+              {
+                "name": "codec",
+                "type": "COMFY_DYNAMICCOMBO_V3",
+                "widget": {
+                  "name": "codec"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "name": "video",
+                "type": "VIDEO",
+                "links": [],
+                "slot_index": 0
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "SaveVideo"
+            },
+            "widgets_values": [
+              "Character/kailani/video/scene-surf",
+              "auto",
+              "auto"
+            ],
+            "title": "Save video (16 fps raw)",
+            "widgets_values_named": {
+              "filename_prefix": "Character/kailani/video/scene-surf",
+              "format": "auto",
+              "codec": "auto"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "VIDEO"
+          },
+          {
+            "id": 2,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 1,
+            "target_slot": 2,
+            "type": "AUDIO"
+          },
+          {
+            "id": 4,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 1,
+            "target_slot": 1,
+            "type": "FLOAT"
+          },
+          {
+            "id": 5,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 2,
+            "target_slot": 1,
+            "type": "STRING"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "video-save",
+      "id": "271b0d7a-835f-51e8-a1a7-5659df6feff7"
+    }
+  },
+  "version": 0.4
+}

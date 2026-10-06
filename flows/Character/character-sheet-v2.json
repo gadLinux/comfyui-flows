@@ -1,0 +1,7367 @@
+{
+  "id": "744773a8-032f-40df-93e1-ab646737fe92",
+  "revision": 0,
+  "last_node_id": 84,
+  "last_link_id": 183,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UnetLoaderGGUF",
+      "pos": [
+        60,
+        124
+      ],
+      "size": [
+        508.421728515625,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "unet_name",
+          "name": "unet_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "unet_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "Diffusion model (Qwen-Image 2.1 GGUF)",
+      "properties": {
+        "aux_id": "leejet/ComfyUI-GGUF",
+        "ver": "373048b8403a7820620065210a691263d4da0a61",
+        "Node name for S&R": "UnetLoaderGGUF",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "unet_name": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "qwen-image-2.1-UC-Q8_0.gguf"
+      ],
+      "widgets_values_named": {
+        "unet_name": "qwen-image-2.1-UC-Q8_0.gguf"
+      }
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        60,
+        300
+      ],
+      "size": [
+        665.0738891601562,
+        158
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "showAdvanced": true,
+      "inputs": [
+        {
+          "localized_name": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "type",
+          "name": "type",
+          "type": "COMBO",
+          "widget": {
+            "name": "type"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "device",
+          "name": "device",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            2,
+            3,
+            4,
+            5,
+            106,
+            124,
+            143,
+            162
+          ]
+        }
+      ],
+      "title": "Text encoder (Qwen3-VL 8B int8) — device cpu: GPU HIP int8 kernel gives NaN on some prompts",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "CLIPLoader",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "clip_name": true,
+            "type": true,
+            "device": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "qwen3vl_8b_ablit_int8.safetensors",
+        "qwen_image",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_8b_ablit_int8.safetensors",
+        "type": "qwen_image",
+        "device": "default"
+      }
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        60,
+        528
+      ],
+      "size": [
+        280,
+        106
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            107,
+            116,
+            125,
+            135,
+            144,
+            154,
+            163,
+            173
+          ]
+        }
+      ],
+      "title": "VAE",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAELoader",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "vae_name": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "qwen_image_2.1_vae_bf16.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+      }
+    },
+    {
+      "id": 4,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        60,
+        1246
+      ],
+      "size": [
+        429.2912963867187,
+        132
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "localized_name": "lora_name",
+          "name": "lora_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength_model",
+          "name": "strength_model",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength_model"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            95,
+            180,
+            181,
+            182,
+            183
+          ]
+        }
+      ],
+      "title": "PLACEHOLDER character LoRA slot [bypassed, strength 0]",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "LoraLoaderModelOnly",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "lora_name": true,
+            "strength_model": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+        0
+      ],
+      "widgets_values_named": {
+        "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+        "strength_model": 0
+      }
+    },
+    {
+      "id": 5,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        1606.1260498046875,
+        124
+      ],
+      "size": [
+        299.95001220703125,
+        258
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 6
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 74
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 101
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            18
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            19
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "Prompt — THREE-VIEW TURNAROUND",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        512
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "negative_prompt": "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        "resolution": 512
+      }
+    },
+    {
+      "id": 6,
+      "type": "KSampler",
+      "pos": [
+        1946.0760620117187,
+        124
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 97
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 18
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 19
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 20
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "Sampler — Three-View",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ],
+      "widgets_values_named": {
+        "seed": 424242,
+        "control_after_generate": "fixed",
+        "steps": 30,
+        "cfg": 4.5,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 7,
+      "type": "VAEDecode",
+      "pos": [
+        2266.076062011719,
+        124
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 21
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            22,
+            47,
+            110,
+            128,
+            147,
+            166
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "SaveImage",
+      "pos": [
+        2586.076062011719,
+        124
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 22
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — Three-View",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/three-view"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/three-view"
+      }
+    },
+    {
+      "id": 9,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        1606.1260498046875,
+        710
+      ],
+      "size": [
+        376.0521606445312,
+        258
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 7
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 75
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 102
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            23
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            24
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            25
+          ]
+        }
+      ],
+      "title": "Prompt — EXPRESSION SHEET [bypass to disable]",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        512
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "negative_prompt": "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        "resolution": 512
+      }
+    },
+    {
+      "id": 10,
+      "type": "KSampler",
+      "pos": [
+        2022.1782104492186,
+        710
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 98
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 23
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 24
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 25
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            26
+          ]
+        }
+      ],
+      "title": "Sampler — Expressions",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ],
+      "widgets_values_named": {
+        "seed": 424242,
+        "control_after_generate": "fixed",
+        "steps": 30,
+        "cfg": 4.5,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [
+        2342.1782104492186,
+        710
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 26
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            27,
+            51
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": "SaveImage",
+      "pos": [
+        2662.1782104492186,
+        710
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 27
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — Expressions",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/expressions"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/expressions"
+      }
+    },
+    {
+      "id": 13,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        1606.1260498046875,
+        1296
+      ],
+      "size": [
+        325.7043518066406,
+        258
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 8
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 76
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 103
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            28
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            29
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            30
+          ]
+        }
+      ],
+      "title": "Prompt — POSE SHEET [bypass to disable]",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        512
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "negative_prompt": "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        "resolution": 512
+      }
+    },
+    {
+      "id": 14,
+      "type": "KSampler",
+      "pos": [
+        1971.830401611328,
+        1296
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 99
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 28
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 29
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 30
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            31
+          ]
+        }
+      ],
+      "title": "Sampler — Poses",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ],
+      "widgets_values_named": {
+        "seed": 424242,
+        "control_after_generate": "fixed",
+        "steps": 30,
+        "cfg": 4.5,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 15,
+      "type": "VAEDecode",
+      "pos": [
+        2291.830401611328,
+        1296
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 31
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            32,
+            55
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 16,
+      "type": "SaveImage",
+      "pos": [
+        2611.830401611328,
+        1296
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 32
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — Poses",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/poses"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/poses"
+      }
+    },
+    {
+      "id": 17,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        1606.1260498046875,
+        1882
+      ],
+      "size": [
+        359.0521606445312,
+        258
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 9
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 77
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 104
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            33
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            34
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            35
+          ]
+        }
+      ],
+      "title": "Prompt — COSTUME SHEET [bypass to disable]",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        512
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "negative_prompt": "extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, watermark, signature, text errors, inconsistent outfit, inconsistent hairstyle, different face between sections, solid opaque background, mismatched lighting, off-model, picture frame, border",
+        "resolution": 512
+      }
+    },
+    {
+      "id": 18,
+      "type": "KSampler",
+      "pos": [
+        2005.1782104492186,
+        1882
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 100
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 33
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 34
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 35
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            36
+          ]
+        }
+      ],
+      "title": "Sampler — Costumes",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ],
+      "widgets_values_named": {
+        "seed": 424242,
+        "control_after_generate": "fixed",
+        "steps": 30,
+        "cfg": 4.5,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 19,
+      "type": "VAEDecode",
+      "pos": [
+        2325.1782104492186,
+        1882
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 36
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            37,
+            59
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 20,
+      "type": "SaveImage",
+      "pos": [
+        2645.1782104492186,
+        1882
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 37
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — Costumes",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/costumes"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/costumes"
+      }
+    },
+    {
+      "id": 22,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        3162.1782104492186,
+        124
+      ],
+      "size": [
+        280,
+        106
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model_name",
+          "name": "model_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "model_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "UPSCALE_MODEL",
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "slot_index": 0,
+          "links": [
+            48,
+            52,
+            56,
+            60
+          ]
+        }
+      ],
+      "title": "Upscale model (x4, photo; anime_6B for drawn cards)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "UpscaleModelLoader",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "model_name": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "RealESRGAN_x4plus.pth"
+      ],
+      "widgets_values_named": {
+        "model_name": "RealESRGAN_x4plus.pth"
+      }
+    },
+    {
+      "id": 23,
+      "type": "ImageRemoveAlpha+",
+      "pos": [
+        3162.1782104492186,
+        300
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 47
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            49
+          ]
+        }
+      ],
+      "title": "RGB for ESRGAN — Three-View",
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "1.1.0",
+        "Node name for S&R": "ImageRemoveAlpha+",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 24,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        3482.1782104492186,
+        300
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "upscale_model",
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 48
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 49
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            83
+          ]
+        }
+      ],
+      "title": "x4 — Three-View",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageUpscaleWithModel",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 25,
+      "type": "SaveImage",
+      "pos": [
+        3802.1782104492186,
+        300
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 84
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save x2 — Three-View",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/three-view_x2"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/three-view_x2"
+      }
+    },
+    {
+      "id": 26,
+      "type": "ImageRemoveAlpha+",
+      "pos": [
+        3162.1782104492186,
+        874
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 51
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            53
+          ]
+        }
+      ],
+      "title": "RGB for ESRGAN — Expressions",
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "1.1.0",
+        "Node name for S&R": "ImageRemoveAlpha+",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 27,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        3482.1782104492186,
+        874
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "upscale_model",
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 52
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 53
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            86
+          ]
+        }
+      ],
+      "title": "x4 — Expressions",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageUpscaleWithModel",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 28,
+      "type": "SaveImage",
+      "pos": [
+        3802.1782104492186,
+        874
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 87
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save x2 — Expressions",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/expressions_x2"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/expressions_x2"
+      }
+    },
+    {
+      "id": 29,
+      "type": "ImageRemoveAlpha+",
+      "pos": [
+        3162.1782104492186,
+        1448
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 55
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            57
+          ]
+        }
+      ],
+      "title": "RGB for ESRGAN — Poses",
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "1.1.0",
+        "Node name for S&R": "ImageRemoveAlpha+",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 30,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        3482.1782104492186,
+        1448
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "upscale_model",
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 56
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 57
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            89
+          ]
+        }
+      ],
+      "title": "x4 — Poses",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageUpscaleWithModel",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 31,
+      "type": "SaveImage",
+      "pos": [
+        3802.1782104492186,
+        1448
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 90
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save x2 — Poses",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/poses_x2"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/poses_x2"
+      }
+    },
+    {
+      "id": 32,
+      "type": "ImageRemoveAlpha+",
+      "pos": [
+        3162.1782104492186,
+        2022
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 59
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            61
+          ]
+        }
+      ],
+      "title": "RGB for ESRGAN — Costumes",
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "1.1.0",
+        "Node name for S&R": "ImageRemoveAlpha+",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 33,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        3482.1782104492186,
+        2022
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "upscale_model",
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 60
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 61
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            92
+          ]
+        }
+      ],
+      "title": "x4 — Costumes",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageUpscaleWithModel",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 34,
+      "type": "SaveImage",
+      "pos": [
+        3802.1782104492186,
+        2022
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 93
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save x2 — Costumes",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/costumes_x2"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/costumes_x2"
+      }
+    },
+    {
+      "id": 35,
+      "type": "ImageStitch",
+      "pos": [
+        4122.178210449219,
+        300
+      ],
+      "size": [
+        309.23333740234375,
+        184
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image1",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 85
+        },
+        {
+          "localized_name": "image2",
+          "name": "image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 88
+        },
+        {
+          "localized_name": "direction",
+          "name": "direction",
+          "type": "COMBO",
+          "widget": {
+            "name": "direction"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "match_image_size",
+          "name": "match_image_size",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "match_image_size"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "spacing_width",
+          "name": "spacing_width",
+          "type": "INT",
+          "widget": {
+            "name": "spacing_width"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "spacing_color",
+          "name": "spacing_color",
+          "type": "COMBO",
+          "widget": {
+            "name": "spacing_color"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            67
+          ]
+        }
+      ],
+      "title": "Stitch top row (three-view | expressions)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageStitch",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "direction": true,
+            "match_image_size": true,
+            "spacing_width": true,
+            "spacing_color": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "right",
+        true,
+        0,
+        "white"
+      ],
+      "widgets_values_named": {
+        "direction": "right",
+        "match_image_size": true,
+        "spacing_width": 0,
+        "spacing_color": "white"
+      }
+    },
+    {
+      "id": 36,
+      "type": "ImageStitch",
+      "pos": [
+        4122.178210449219,
+        1448
+      ],
+      "size": [
+        288.0521759033203,
+        184
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image1",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 91
+        },
+        {
+          "localized_name": "image2",
+          "name": "image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 94
+        },
+        {
+          "localized_name": "direction",
+          "name": "direction",
+          "type": "COMBO",
+          "widget": {
+            "name": "direction"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "match_image_size",
+          "name": "match_image_size",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "match_image_size"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "spacing_width",
+          "name": "spacing_width",
+          "type": "INT",
+          "widget": {
+            "name": "spacing_width"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "spacing_color",
+          "name": "spacing_color",
+          "type": "COMBO",
+          "widget": {
+            "name": "spacing_color"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            68
+          ]
+        }
+      ],
+      "title": "Stitch bottom row (poses | costumes)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageStitch",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "direction": true,
+            "match_image_size": true,
+            "spacing_width": true,
+            "spacing_color": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "right",
+        true,
+        0,
+        "white"
+      ],
+      "widgets_values_named": {
+        "direction": "right",
+        "match_image_size": true,
+        "spacing_width": 0,
+        "spacing_color": "white"
+      }
+    },
+    {
+      "id": 37,
+      "type": "ImageStitch",
+      "pos": [
+        4122.178210449219,
+        874
+      ],
+      "size": [
+        280,
+        184
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image1",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 67
+        },
+        {
+          "localized_name": "image2",
+          "name": "image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 68
+        },
+        {
+          "localized_name": "direction",
+          "name": "direction",
+          "type": "COMBO",
+          "widget": {
+            "name": "direction"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "match_image_size",
+          "name": "match_image_size",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "match_image_size"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "spacing_width",
+          "name": "spacing_width",
+          "type": "INT",
+          "widget": {
+            "name": "spacing_width"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "spacing_color",
+          "name": "spacing_color",
+          "type": "COMBO",
+          "widget": {
+            "name": "spacing_color"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            69
+          ]
+        }
+      ],
+      "title": "Stitch final 2x2 sheet",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageStitch",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "direction": true,
+            "match_image_size": true,
+            "spacing_width": true,
+            "spacing_color": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "down",
+        true,
+        0,
+        "white"
+      ],
+      "widgets_values_named": {
+        "direction": "down",
+        "match_image_size": true,
+        "spacing_width": 0,
+        "spacing_color": "white"
+      }
+    },
+    {
+      "id": 38,
+      "type": "SaveImage",
+      "pos": [
+        4471.411547851562,
+        874
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 69
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — FINAL SHEET x2 (2x2)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/sheet_x2"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/kailani/v2/sheet_x2"
+      }
+    },
+    {
+      "id": 39,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        945.0738891601562,
+        124
+      ],
+      "size": [
+        441.0521606445312,
+        340
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            70,
+            71,
+            72,
+            73,
+            105,
+            123,
+            142,
+            161
+          ]
+        }
+      ],
+      "title": "CHARACTER CARD — edit only this to make a new character",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "value": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character name: KAILANI\nScope: Live-action film\nArt style: photorealistic photograph, real person, natural skin texture, DSLR photo, 85mm lens, soft natural daylight, sharp focus, true-to-life colors. Not a drawing, not an illustration, not anime, not a 3D render.\nCharacter: a lean athletic surfer woman in her early twenties with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, light turquoise-blue eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white."
+      ],
+      "widgets_values_named": {
+        "value": "Character name: KAILANI\nScope: Live-action film\nArt style: photorealistic photograph, real person, natural skin texture, DSLR photo, 85mm lens, soft natural daylight, sharp focus, true-to-life colors. Not a drawing, not an illustration, not anime, not a 3D render.\nCharacter: a lean athletic surfer woman in her early twenties with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, light turquoise-blue eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white."
+      }
+    },
+    {
+      "id": 40,
+      "type": "StringConcatenate",
+      "pos": [
+        945.0738891601562,
+        534
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 70
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            74
+          ]
+        }
+      ],
+      "title": "Compose prompt — THREE-VIEW (card + sheet template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, create a character reference sheet, three-view turnaround. The character's name is shown as large clean bold text in the top-left corner, with a small subtitle beneath it reading \"THREE-VIEW TURNAROUND\". Grid layout with 3 equal vertical sections side by side separated by clean transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above. The character wears the default outfit and holds the signature prop upright beside them. Each section shows the full body at the same scale, same neutral standing pose, arms relaxed at sides — only the camera angle changes.\n\nSection 1 (left, FRONT VIEW): facing the camera directly, full body, neutral confident expression.\nSection 2 (middle, SIDE VIEW): body turned 90 degrees, profile view, identical pose and outfit.\nSection 3 (right, BACK VIEW): facing away from the camera, back of the hair and outfit visible, identical pose.\n\nEven lighting, no dramatic shadows, consistent style and body proportions across all three sections, small clean text label 'FRONT VIEW' / 'SIDE VIEW' / 'BACK VIEW' centered beneath each section, transparent background outside the character silhouette in every section.",
+        "\n\n"
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "Using the character described above, create a character reference sheet, three-view turnaround. The character's name is shown as large clean bold text in the top-left corner, with a small subtitle beneath it reading \"THREE-VIEW TURNAROUND\". Grid layout with 3 equal vertical sections side by side separated by clean transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above. The character wears the default outfit and holds the signature prop upright beside them. Each section shows the full body at the same scale, same neutral standing pose, arms relaxed at sides — only the camera angle changes.\n\nSection 1 (left, FRONT VIEW): facing the camera directly, full body, neutral confident expression.\nSection 2 (middle, SIDE VIEW): body turned 90 degrees, profile view, identical pose and outfit.\nSection 3 (right, BACK VIEW): facing away from the camera, back of the hair and outfit visible, identical pose.\n\nEven lighting, no dramatic shadows, consistent style and body proportions across all three sections, small clean text label 'FRONT VIEW' / 'SIDE VIEW' / 'BACK VIEW' centered beneath each section, transparent background outside the character silhouette in every section.",
+        "delimiter": "\n\n"
+      }
+    },
+    {
+      "id": 41,
+      "type": "StringConcatenate",
+      "pos": [
+        945.0738891601562,
+        844
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 71
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            75
+          ]
+        }
+      ],
+      "title": "Compose prompt — EXPRESSIONS (card + sheet template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, create a character expression sheet. The character's name is shown as large clean bold text at the top of the sheet, with a small subtitle beneath it reading \"EXPRESSION SHEET\". Grid layout with a clean 3x3 grid of 9 equal square sections separated by transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above. Every section shows only the head and shoulders, the neckline of the default outfit visible, same camera angle, same hairstyle — only the facial expression changes, transparent background in every section.\n\nSection 1 (top-left, NEUTRAL): neutral, relaxed face. Section 2 (top-middle, HAPPY): happy, big grin. Section 3 (top-right, SAD): sad, downturned eyes. Section 4 (middle-left, ANGRY): angry, furrowed brows. Section 5 (center, EMBARRASSED): embarrassed, blushing. Section 6 (middle-right, CONFUSED): confused, head tilted. Section 7 (bottom-left, SURPRISED): surprised, wide eyes, open mouth. Section 8 (bottom-middle, SMUG): smug smirk. Section 9 (bottom-right, SLEEPY): sleepy, half-closed eyes.\n\nConsistent face shape, hairstyle and proportions in every section, small clean text label centered beneath each section naming its expression: 'NEUTRAL' / 'HAPPY' / 'SAD' / 'ANGRY' / 'EMBARRASSED' / 'CONFUSED' / 'SURPRISED' / 'SMUG' / 'SLEEPY'. No numbers anywhere on the sheet.",
+        "\n\n"
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "Using the character described above, create a character expression sheet. The character's name is shown as large clean bold text at the top of the sheet, with a small subtitle beneath it reading \"EXPRESSION SHEET\". Grid layout with a clean 3x3 grid of 9 equal square sections separated by transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above. Every section shows only the head and shoulders, the neckline of the default outfit visible, same camera angle, same hairstyle — only the facial expression changes, transparent background in every section.\n\nSection 1: neutral. Section 2: happy, big grin. Section 3: sad. Section 4: angry. Section 5: embarrassed, blushing. Section 6: confused. Section 7: surprised. Section 8: smug smirk. Section 9: sleepy, half-closed eyes.\n\nConsistent face shape, hairstyle and proportions in every section, small clean number label under each panel.",
+        "delimiter": "\n\n"
+      }
+    },
+    {
+      "id": 42,
+      "type": "StringConcatenate",
+      "pos": [
+        945.0738891601562,
+        1154
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 72
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            76
+          ]
+        }
+      ],
+      "title": "Compose prompt — POSES (card + sheet template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, create a character pose sheet. The character's name is shown as large clean bold text at the top of the sheet, with a small subtitle beneath it reading \"POSE SHEET\". Grid layout with a clean 3x3 grid of 9 equal square sections separated by transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above. Every section shows the full body in the default outfit, transparent background with at most a small hint of the character's setting under their feet — only the pose changes.\n\nSection 1 (top-left, STANDING): standing neutral, signature prop beside them. Section 2 (top-middle, WALKING): walking. Section 3 (top-right, SITTING): sitting cross-legged on the ground. Section 4 (middle-left, RUNNING): running. Section 5 (center, THINKING): thinking pose, hand on chin. Section 6 (middle-right, WAVING): waving one hand. Section 7 (bottom-left, POINTING): pointing forward. Section 8 (bottom-middle, CELEBRATING): raising both arms overhead in celebration. Section 9 (bottom-right, SIGNATURE ACTION): performing the character's signature action with the signature prop.\n\nConsistent proportions, outfit and hairstyle in every section, small clean text label centered beneath each section naming its pose: 'STANDING' / 'WALKING' / 'SITTING' / 'RUNNING' / 'THINKING' / 'WAVING' / 'POINTING' / 'CELEBRATING' / 'SIGNATURE ACTION'. No numbers anywhere on the sheet.",
+        "\n\n"
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "Using the character described above, create a character pose sheet. The character's name is shown as large clean bold text at the top of the sheet, with a small subtitle beneath it reading \"POSE SHEET\". Grid layout with a clean 3x3 grid of 9 equal square sections separated by transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above. Every section shows the full body in the default outfit, transparent background with at most a small hint of the character's setting under their feet — only the pose changes.\n\nSection 1: standing neutral, signature prop beside them. Section 2: walking. Section 3: sitting cross-legged on the ground. Section 4: running. Section 5: thinking pose, hand on chin. Section 6: waving one hand. Section 7: pointing forward. Section 8: raising both arms overhead in celebration. Section 9: performing the character's signature action with the signature prop.\n\nConsistent proportions, outfit and hairstyle in every section, small clean number label under each panel.",
+        "delimiter": "\n\n"
+      }
+    },
+    {
+      "id": 43,
+      "type": "StringConcatenate",
+      "pos": [
+        945.0738891601562,
+        1464
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 73
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            77
+          ]
+        }
+      ],
+      "title": "Compose prompt — COSTUMES (card + sheet template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, create a character costume design sheet. The character's name is shown as large clean bold text at the top of the sheet, with a small subtitle beneath it reading \"COSTUME SHEET\". Grid layout with 4 equal sections separated by transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above, all outfits in the character's color palette.\n\nSection 1 (large, left, DEFAULT OUTFIT): the default outfit, front view and back view side by side.\nSection 2 (top-right, CASUAL): a casual everyday outfit that fits the character's setting.\nSection 3 (middle-right, SPECIAL): a special-occasion or action outfit that fits the character's role in their setting.\nSection 4 (bottom-right, NIGHTWEAR): a cozy night-time outfit, hair relaxed.\n\nSame face, hairstyle and body proportions in every section, small clean text label centered beneath each section naming its outfit: 'DEFAULT OUTFIT' / 'CASUAL' / 'SPECIAL' / 'NIGHTWEAR'. No numbers anywhere on the sheet, transparent background in every section.",
+        "\n\n"
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "Using the character described above, create a character costume design sheet. The character's name is shown as large clean bold text at the top of the sheet, with a small subtitle beneath it reading \"COSTUME SHEET\". Grid layout with 4 equal sections separated by transparent alpha gutters (no solid dividers, no background fill between sections), in the art style given above, all outfits in the character's color palette.\n\nSection 1 (large, left): the default outfit, front view and back view side by side.\nSection 2: a casual everyday outfit that fits the character's setting.\nSection 3: a special-occasion or action outfit that fits the character's role in their setting.\nSection 4: a cozy night-time outfit, hair relaxed.\n\nSame face, hairstyle and body proportions in every section, small clean text label under each outfit, transparent background in every section.",
+        "delimiter": "\n\n"
+      }
+    },
+    {
+      "id": 45,
+      "type": "ImageScaleBy",
+      "pos": [
+        3482.1782104492186,
+        672
+      ],
+      "size": [
+        280,
+        132
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 83
+        },
+        {
+          "localized_name": "upscale_method",
+          "name": "upscale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "upscale_method"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scale_by",
+          "name": "scale_by",
+          "type": "FLOAT",
+          "widget": {
+            "name": "scale_by"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            84,
+            85
+          ]
+        }
+      ],
+      "title": "0.5x (net x2) — Three-View",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageScaleBy",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "upscale_method": true,
+            "scale_by": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        0.5
+      ],
+      "widgets_values_named": {
+        "upscale_method": "lanczos",
+        "scale_by": 0.5
+      }
+    },
+    {
+      "id": 46,
+      "type": "ImageScaleBy",
+      "pos": [
+        3482.1782104492186,
+        1246
+      ],
+      "size": [
+        280,
+        132
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 86
+        },
+        {
+          "localized_name": "upscale_method",
+          "name": "upscale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "upscale_method"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scale_by",
+          "name": "scale_by",
+          "type": "FLOAT",
+          "widget": {
+            "name": "scale_by"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            87,
+            88
+          ]
+        }
+      ],
+      "title": "0.5x (net x2) — Expressions",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageScaleBy",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "upscale_method": true,
+            "scale_by": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        0.5
+      ],
+      "widgets_values_named": {
+        "upscale_method": "lanczos",
+        "scale_by": 0.5
+      }
+    },
+    {
+      "id": 47,
+      "type": "ImageScaleBy",
+      "pos": [
+        3482.1782104492186,
+        1820
+      ],
+      "size": [
+        280,
+        132
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 89
+        },
+        {
+          "localized_name": "upscale_method",
+          "name": "upscale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "upscale_method"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scale_by",
+          "name": "scale_by",
+          "type": "FLOAT",
+          "widget": {
+            "name": "scale_by"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            90,
+            91
+          ]
+        }
+      ],
+      "title": "0.5x (net x2) — Poses",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageScaleBy",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "upscale_method": true,
+            "scale_by": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        0.5
+      ],
+      "widgets_values_named": {
+        "upscale_method": "lanczos",
+        "scale_by": 0.5
+      }
+    },
+    {
+      "id": 48,
+      "type": "ImageScaleBy",
+      "pos": [
+        3482.1782104492186,
+        2394
+      ],
+      "size": [
+        280,
+        132
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 92
+        },
+        {
+          "localized_name": "upscale_method",
+          "name": "upscale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "upscale_method"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scale_by",
+          "name": "scale_by",
+          "type": "FLOAT",
+          "widget": {
+            "name": "scale_by"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            93,
+            94
+          ]
+        }
+      ],
+      "title": "0.5x (net x2) — Costumes",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "ImageScaleBy",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "upscale_method": true,
+            "scale_by": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        0.5
+      ],
+      "widgets_values_named": {
+        "upscale_method": "lanczos",
+        "scale_by": 0.5
+      }
+    },
+    {
+      "id": 49,
+      "type": "TorchCompileModel",
+      "pos": [
+        60,
+        856
+      ],
+      "size": [
+        568.378271484375,
+        106
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 95
+        },
+        {
+          "localized_name": "backend",
+          "name": "backend",
+          "type": "COMBO",
+          "widget": {
+            "name": "backend"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            97,
+            98,
+            99,
+            100
+          ]
+        }
+      ],
+      "title": "TorchCompile (inductor) — needs --disable-comfy-compiler; first run warms up",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TorchCompileModel",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "backend": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "inductor"
+      ],
+      "widgets_values_named": {
+        "backend": "inductor"
+      }
+    },
+    {
+      "id": 50,
+      "type": "PrimitiveInt",
+      "pos": [
+        60,
+        704
+      ],
+      "size": [
+        411.2260803222656,
+        82
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "INT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "slot_index": 0,
+          "links": [
+            101,
+            102,
+            103,
+            104,
+            109,
+            127,
+            146,
+            165
+          ]
+        }
+      ],
+      "title": "RESOLUTION — sets all four sheets (512 test / 768 final)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "PrimitiveInt",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "value": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        512,
+        "fixed"
+      ],
+      "widgets_values_named": {
+        "value": 512,
+        "fixed": "fixed"
+      }
+    },
+    {
+      "id": 51,
+      "type": "LoadBackgroundRemovalModel",
+      "pos": [
+        3066.076062011719,
+        2810
+      ],
+      "size": [
+        340,
+        82
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "bg_removal_name",
+          "name": "bg_removal_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "bg_removal_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "bg_model",
+          "name": "bg_model",
+          "type": "BACKGROUND_REMOVAL",
+          "slot_index": 0,
+          "links": [
+            117,
+            136,
+            155,
+            174
+          ]
+        }
+      ],
+      "title": "Background removal model (BiRefNet) — 3D views",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "LoadBackgroundRemovalModel"
+      },
+      "widgets_values": [
+        "birefnet.safetensors"
+      ]
+    },
+    {
+      "id": 52,
+      "type": "StringConcatenate",
+      "pos": [
+        1606.1260498046875,
+        2962
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 105
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            108
+          ]
+        }
+      ],
+      "title": "Compose prompt — 3D FRONT VIEW (card + view template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, and matching the character in the reference image(s) exactly (same face, hairstyle, body proportions, outfit and colors), create ONE single full-body image of the character as a clean 3D-modelling reference view.\n\nFRONT VIEW: the character faces the camera directly, looking straight ahead with a neutral expression; both shoulders equally visible, body square to the camera.\n\nExactly one figure: no other characters, no character sheet, no grid, no text, no labels, no name, no frame. The whole body from the top of the head to the soles of the feet is in frame, centered, filling about 85% of the image height with an even margin all around. Neutral A-pose: standing straight, legs slightly apart, arms held straight and angled about 30 degrees away from the body, hands open, so no limb overlaps the torso. The character wears the default outfit and does NOT hold the signature prop. Camera level at mid-body height with a long lens, almost no perspective distortion. Even, shadowless lighting. Plain solid pure white background, no floor, no ground shadow. In the art style given above.",
+        "\n\n"
+      ]
+    },
+    {
+      "id": 53,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        2086.1260498046877,
+        2962
+      ],
+      "size": [
+        299.95001220703125,
+        258
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 106
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 110
+        },
+        {
+          "localized_name": "image_2",
+          "name": "images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 107
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 108
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 109
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            112
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            113
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            114
+          ]
+        }
+      ],
+      "title": "Prompt — 3D FRONT VIEW",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "multiple characters, duplicate figure, character sheet, turnaround grid, split screen, text, label, watermark, signature, cropped head, cropped feet, out of frame, perspective distortion, foreshortening, dramatic shadow, cast shadow, floor, props, holding object, background scenery, extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, inconsistent outfit, inconsistent hairstyle, off-model",
+        512
+      ]
+    },
+    {
+      "id": 54,
+      "type": "KSampler",
+      "pos": [
+        2426.076062011719,
+        2962
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 180
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 112
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 113
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 114
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            115
+          ]
+        }
+      ],
+      "title": "Sampler — 3D FRONT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 55,
+      "type": "VAEDecode",
+      "pos": [
+        2746.076062011719,
+        2962
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 52,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 115
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 116
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            118,
+            120
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "title": "Decode — 3D FRONT"
+    },
+    {
+      "id": 56,
+      "type": "RemoveBackground",
+      "pos": [
+        3066.076062011719,
+        2962
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 53,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "bg_removal_model",
+          "name": "bg_removal_model",
+          "type": "BACKGROUND_REMOVAL",
+          "link": 117
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 118
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            119
+          ]
+        }
+      ],
+      "title": "Foreground mask — 3D FRONT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "RemoveBackground"
+      }
+    },
+    {
+      "id": 57,
+      "type": "InvertMask",
+      "pos": [
+        3446.076062011719,
+        2962
+      ],
+      "size": [
+        330,
+        80
+      ],
+      "flags": {},
+      "order": 54,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "link": 119
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            121
+          ]
+        }
+      ],
+      "title": "Invert (JoinImageWithAlpha wants 1 = transparent) — FRONT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "InvertMask"
+      }
+    },
+    {
+      "id": 58,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        3816.076062011719,
+        2962
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 55,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 120
+        },
+        {
+          "localized_name": "alpha",
+          "name": "alpha",
+          "type": "MASK",
+          "link": 121
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            122
+          ]
+        }
+      ],
+      "title": "RGBA — 3D FRONT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "JoinImageWithAlpha"
+      }
+    },
+    {
+      "id": 59,
+      "type": "SaveImage",
+      "pos": [
+        4136.076062011719,
+        2962
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 56,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 122
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — 3D FRONT view (RGBA)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/3d-views/front"
+      ]
+    },
+    {
+      "id": 60,
+      "type": "StringConcatenate",
+      "pos": [
+        1606.1260498046875,
+        3334
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 57,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 123
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            126
+          ]
+        }
+      ],
+      "title": "Compose prompt — 3D LEFT VIEW (card + view template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, and matching the character in the reference image(s) exactly (same face, hairstyle, body proportions, outfit and colors), create ONE single full-body image of the character as a clean 3D-modelling reference view.\n\nLEFT SIDE VIEW (exact 90-degree profile): the camera is at the character's own LEFT side, so the character's left arm and left leg are nearest the camera and the character faces toward the LEFT edge of the image. This is NOT the front view: the face and chest do not point at the camera; only the left side of the face is visible. Same A-pose, same scale and same head height in the frame as the matching view in the reference character sheet; take the character's look from the sheet, not its labels or layout.\n\nExactly one figure: no other characters, no character sheet, no grid, no text, no labels, no name, no frame. The whole body from the top of the head to the soles of the feet is in frame, centered, filling about 85% of the image height with an even margin all around. Neutral A-pose: standing straight, legs slightly apart, arms held straight and angled about 30 degrees away from the body, hands open, so no limb overlaps the torso. The character wears the default outfit and does NOT hold the signature prop. Camera level at mid-body height with a long lens, almost no perspective distortion. Even, shadowless lighting. Plain solid pure white background, no floor, no ground shadow. In the art style given above.",
+        "\n\n"
+      ]
+    },
+    {
+      "id": 61,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        2086.1260498046877,
+        3334
+      ],
+      "size": [
+        299.95001220703125,
+        258
+      ],
+      "flags": {},
+      "order": 58,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 124
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 128
+        },
+        {
+          "localized_name": "image_2",
+          "name": "images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 125
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 126
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 127
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            131
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            132
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            133
+          ]
+        }
+      ],
+      "title": "Prompt — 3D LEFT VIEW",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "multiple characters, duplicate figure, character sheet, turnaround grid, split screen, text, label, watermark, signature, cropped head, cropped feet, out of frame, perspective distortion, foreshortening, dramatic shadow, cast shadow, floor, props, holding object, background scenery, extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, inconsistent outfit, inconsistent hairstyle, off-model",
+        512
+      ]
+    },
+    {
+      "id": 62,
+      "type": "KSampler",
+      "pos": [
+        2426.076062011719,
+        3334
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 59,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 181
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 131
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 132
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 133
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            134
+          ]
+        }
+      ],
+      "title": "Sampler — 3D LEFT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 63,
+      "type": "VAEDecode",
+      "pos": [
+        2746.076062011719,
+        3334
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 134
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 135
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            137,
+            139
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "title": "Decode — 3D LEFT"
+    },
+    {
+      "id": 64,
+      "type": "RemoveBackground",
+      "pos": [
+        3066.076062011719,
+        3334
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "bg_removal_model",
+          "name": "bg_removal_model",
+          "type": "BACKGROUND_REMOVAL",
+          "link": 136
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 137
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            138
+          ]
+        }
+      ],
+      "title": "Foreground mask — 3D LEFT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "RemoveBackground"
+      }
+    },
+    {
+      "id": 65,
+      "type": "InvertMask",
+      "pos": [
+        3446.076062011719,
+        3334
+      ],
+      "size": [
+        330,
+        80
+      ],
+      "flags": {},
+      "order": 62,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "link": 138
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            140
+          ]
+        }
+      ],
+      "title": "Invert (JoinImageWithAlpha wants 1 = transparent) — LEFT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "InvertMask"
+      }
+    },
+    {
+      "id": 66,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        3816.076062011719,
+        3334
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 63,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 139
+        },
+        {
+          "localized_name": "alpha",
+          "name": "alpha",
+          "type": "MASK",
+          "link": 140
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            141
+          ]
+        }
+      ],
+      "title": "RGBA — 3D LEFT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "JoinImageWithAlpha"
+      }
+    },
+    {
+      "id": 67,
+      "type": "SaveImage",
+      "pos": [
+        4136.076062011719,
+        3334
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 64,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 141
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — 3D LEFT view (RGBA)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/3d-views/left"
+      ]
+    },
+    {
+      "id": 68,
+      "type": "StringConcatenate",
+      "pos": [
+        1606.1260498046875,
+        3706
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 65,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 142
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            145
+          ]
+        }
+      ],
+      "title": "Compose prompt — 3D BACK VIEW (card + view template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, and matching the character in the reference image(s) exactly (same face, hairstyle, body proportions, outfit and colors), create ONE single full-body image of the character as a clean 3D-modelling reference view.\n\nBACK VIEW (camera 180 degrees behind the character): the character faces directly away from the camera; the back of the head, the hair and the back of the outfit are visible, the face is not visible. This is NOT the front view: no face, eyes or mouth are visible. Same A-pose, same scale and same head height in the frame as the matching view in the reference character sheet; take the character's look from the sheet, not its labels or layout.\n\nExactly one figure: no other characters, no character sheet, no grid, no text, no labels, no name, no frame. The whole body from the top of the head to the soles of the feet is in frame, centered, filling about 85% of the image height with an even margin all around. Neutral A-pose: standing straight, legs slightly apart, arms held straight and angled about 30 degrees away from the body, hands open, so no limb overlaps the torso. The character wears the default outfit and does NOT hold the signature prop. Camera level at mid-body height with a long lens, almost no perspective distortion. Even, shadowless lighting. Plain solid pure white background, no floor, no ground shadow. In the art style given above.",
+        "\n\n"
+      ]
+    },
+    {
+      "id": 69,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        2086.1260498046877,
+        3706
+      ],
+      "size": [
+        299.95001220703125,
+        258
+      ],
+      "flags": {},
+      "order": 66,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 143
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 147
+        },
+        {
+          "localized_name": "image_2",
+          "name": "images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 144
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 145
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 146
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            150
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            151
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            152
+          ]
+        }
+      ],
+      "title": "Prompt — 3D BACK VIEW",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "multiple characters, duplicate figure, character sheet, turnaround grid, split screen, text, label, watermark, signature, cropped head, cropped feet, out of frame, perspective distortion, foreshortening, dramatic shadow, cast shadow, floor, props, holding object, background scenery, extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, inconsistent outfit, inconsistent hairstyle, off-model",
+        512
+      ]
+    },
+    {
+      "id": 70,
+      "type": "KSampler",
+      "pos": [
+        2426.076062011719,
+        3706
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 67,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 182
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 150
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 151
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 152
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            153
+          ]
+        }
+      ],
+      "title": "Sampler — 3D BACK",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 71,
+      "type": "VAEDecode",
+      "pos": [
+        2746.076062011719,
+        3706
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 68,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 153
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 154
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            156,
+            158
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "title": "Decode — 3D BACK"
+    },
+    {
+      "id": 72,
+      "type": "RemoveBackground",
+      "pos": [
+        3066.076062011719,
+        3706
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 69,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "bg_removal_model",
+          "name": "bg_removal_model",
+          "type": "BACKGROUND_REMOVAL",
+          "link": 155
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 156
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            157
+          ]
+        }
+      ],
+      "title": "Foreground mask — 3D BACK",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "RemoveBackground"
+      }
+    },
+    {
+      "id": 73,
+      "type": "InvertMask",
+      "pos": [
+        3446.076062011719,
+        3706
+      ],
+      "size": [
+        330,
+        80
+      ],
+      "flags": {},
+      "order": 70,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "link": 157
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            159
+          ]
+        }
+      ],
+      "title": "Invert (JoinImageWithAlpha wants 1 = transparent) — BACK",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "InvertMask"
+      }
+    },
+    {
+      "id": 74,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        3816.076062011719,
+        3706
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 71,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 158
+        },
+        {
+          "localized_name": "alpha",
+          "name": "alpha",
+          "type": "MASK",
+          "link": 159
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            160
+          ]
+        }
+      ],
+      "title": "RGBA — 3D BACK",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "JoinImageWithAlpha"
+      }
+    },
+    {
+      "id": 75,
+      "type": "SaveImage",
+      "pos": [
+        4136.076062011719,
+        3706
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 72,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 160
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — 3D BACK view (RGBA)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/3d-views/back"
+      ]
+    },
+    {
+      "id": 76,
+      "type": "StringConcatenate",
+      "pos": [
+        1606.1260498046875,
+        4078
+      ],
+      "size": [
+        440,
+        240
+      ],
+      "flags": {},
+      "order": 73,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 161
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            164
+          ]
+        }
+      ],
+      "title": "Compose prompt — 3D RIGHT VIEW (card + view template)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "string_a": true,
+            "string_b": true,
+            "delimiter": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "Using the character described above, and matching the character in the reference image(s) exactly (same face, hairstyle, body proportions, outfit and colors), create ONE single full-body image of the character as a clean 3D-modelling reference view.\n\nRIGHT SIDE VIEW (exact 90-degree profile): the camera is at the character's own RIGHT side, so the character's right arm and right leg are nearest the camera and the character faces toward the RIGHT edge of the image. This is NOT the front view: the face and chest do not point at the camera; only the right side of the face is visible. Same A-pose, same scale and same head height in the frame as the matching view in the reference character sheet; take the character's look from the sheet, not its labels or layout.\n\nExactly one figure: no other characters, no character sheet, no grid, no text, no labels, no name, no frame. The whole body from the top of the head to the soles of the feet is in frame, centered, filling about 85% of the image height with an even margin all around. Neutral A-pose: standing straight, legs slightly apart, arms held straight and angled about 30 degrees away from the body, hands open, so no limb overlaps the torso. The character wears the default outfit and does NOT hold the signature prop. Camera level at mid-body height with a long lens, almost no perspective distortion. Even, shadowless lighting. Plain solid pure white background, no floor, no ground shadow. In the art style given above.",
+        "\n\n"
+      ]
+    },
+    {
+      "id": 77,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        2086.1260498046877,
+        4078
+      ],
+      "size": [
+        299.95001220703125,
+        258
+      ],
+      "flags": {},
+      "order": 74,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 162
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 166
+        },
+        {
+          "localized_name": "image_2",
+          "name": "images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 163
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 164
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": 165
+        },
+        {
+          "name": "images",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            169
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            170
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            171
+          ]
+        }
+      ],
+      "title": "Prompt — 3D RIGHT VIEW",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "TextEncodeQwenImage21",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "prompt": true,
+            "negative_prompt": true,
+            "resolution": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "multiple characters, duplicate figure, character sheet, turnaround grid, split screen, text, label, watermark, signature, cropped head, cropped feet, out of frame, perspective distortion, foreshortening, dramatic shadow, cast shadow, floor, props, holding object, background scenery, extra limbs, extra fingers, fused fingers, missing limbs, deformed hands, bad anatomy, asymmetrical face, blurry, lowres, jpeg artifacts, inconsistent outfit, inconsistent hairstyle, off-model",
+        512
+      ]
+    },
+    {
+      "id": 78,
+      "type": "KSampler",
+      "pos": [
+        2426.076062011719,
+        4078
+      ],
+      "size": [
+        280,
+        262
+      ],
+      "flags": {},
+      "order": 75,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 183
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 169
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 170
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 171
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            172
+          ]
+        }
+      ],
+      "title": "Sampler — 3D RIGHT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "seed": true,
+            "steps": true,
+            "cfg": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "denoise": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        424242,
+        "fixed",
+        30,
+        4.5,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 79,
+      "type": "VAEDecode",
+      "pos": [
+        2746.076062011719,
+        4078
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 76,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 172
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 173
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            175,
+            177
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "title": "Decode — 3D RIGHT"
+    },
+    {
+      "id": 80,
+      "type": "RemoveBackground",
+      "pos": [
+        3066.076062011719,
+        4078
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 77,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "bg_removal_model",
+          "name": "bg_removal_model",
+          "type": "BACKGROUND_REMOVAL",
+          "link": 174
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 175
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            176
+          ]
+        }
+      ],
+      "title": "Foreground mask — 3D RIGHT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "RemoveBackground"
+      }
+    },
+    {
+      "id": 81,
+      "type": "InvertMask",
+      "pos": [
+        3446.076062011719,
+        4078
+      ],
+      "size": [
+        330,
+        80
+      ],
+      "flags": {},
+      "order": 78,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "link": 176
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 0,
+          "links": [
+            178
+          ]
+        }
+      ],
+      "title": "Invert (JoinImageWithAlpha wants 1 = transparent) — RIGHT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "InvertMask"
+      }
+    },
+    {
+      "id": 82,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        3816.076062011719,
+        4078
+      ],
+      "size": [
+        280,
+        80
+      ],
+      "flags": {},
+      "order": 79,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 177
+        },
+        {
+          "localized_name": "alpha",
+          "name": "alpha",
+          "type": "MASK",
+          "link": 178
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            179
+          ]
+        }
+      ],
+      "title": "RGBA — 3D RIGHT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "JoinImageWithAlpha"
+      }
+    },
+    {
+      "id": 83,
+      "type": "SaveImage",
+      "pos": [
+        4136.076062011719,
+        4078
+      ],
+      "size": [
+        280,
+        302
+      ],
+      "flags": {},
+      "order": 80,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 179
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save — 3D RIGHT view (RGBA)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Character/kailani/v2/3d-views/right"
+      ]
+    },
+    {
+      "id": 84,
+      "type": "MarkdownNote",
+      "pos": [
+        945.0738891601562,
+        1774
+      ],
+      "size": [
+        441.0521606445312,
+        420
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "EXAMPLE CARD — Kailani, original anime (copy into the card to use)",
+      "properties": {},
+      "widgets_values": [
+        "# EXAMPLE CARD — Kailani, original anime version\n\nThe live card above is the **photorealistic** Kailani. This is the original drawn version, kept as an example of a non-photographic card. To use it, copy the block into the CHARACTER CARD node.\n\nStyle lives **only** in the card's `Art style:` line; the templates never name a medium. For a drawn card, also switch the upscaler back to `RealESRGAN_x4plus_anime_6B.pth`.\n\n```\nCharacter name: KAILANI\nScope: Animation\nArt style: anime style, clean line art, cel shading\nCharacter: a lean athletic teenage surfer girl with sun-kissed tan skin, wavy sun-bleached hair streaked with ocean-blue tips tied in a loose messy braid, bright turquoise eyes.\nDefault outfit: a coral-orange rash guard top and white boardshorts, barefoot, a silver ankle bracelet.\nSignature prop: a yellow surfboard with a hibiscus flower decal.\nSetting: a sunny beach surf town.\nColor palette: turquoise, coral-orange, sand-tan and white.\n```\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      4,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      2,
+      0,
+      9,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      2,
+      0,
+      13,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      2,
+      0,
+      17,
+      0,
+      "CLIP"
+    ],
+    [
+      6,
+      3,
+      0,
+      5,
+      2,
+      "VAE"
+    ],
+    [
+      7,
+      3,
+      0,
+      9,
+      2,
+      "VAE"
+    ],
+    [
+      8,
+      3,
+      0,
+      13,
+      2,
+      "VAE"
+    ],
+    [
+      9,
+      3,
+      0,
+      17,
+      2,
+      "VAE"
+    ],
+    [
+      10,
+      3,
+      0,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      11,
+      3,
+      0,
+      11,
+      1,
+      "VAE"
+    ],
+    [
+      12,
+      3,
+      0,
+      15,
+      1,
+      "VAE"
+    ],
+    [
+      13,
+      3,
+      0,
+      19,
+      1,
+      "VAE"
+    ],
+    [
+      18,
+      5,
+      0,
+      6,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      19,
+      5,
+      1,
+      6,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      20,
+      5,
+      2,
+      6,
+      3,
+      "LATENT"
+    ],
+    [
+      21,
+      6,
+      0,
+      7,
+      0,
+      "LATENT"
+    ],
+    [
+      22,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      23,
+      9,
+      0,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      24,
+      9,
+      1,
+      10,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      9,
+      2,
+      10,
+      3,
+      "LATENT"
+    ],
+    [
+      26,
+      10,
+      0,
+      11,
+      0,
+      "LATENT"
+    ],
+    [
+      27,
+      11,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      28,
+      13,
+      0,
+      14,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      29,
+      13,
+      1,
+      14,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      30,
+      13,
+      2,
+      14,
+      3,
+      "LATENT"
+    ],
+    [
+      31,
+      14,
+      0,
+      15,
+      0,
+      "LATENT"
+    ],
+    [
+      32,
+      15,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      33,
+      17,
+      0,
+      18,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      34,
+      17,
+      1,
+      18,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      35,
+      17,
+      2,
+      18,
+      3,
+      "LATENT"
+    ],
+    [
+      36,
+      18,
+      0,
+      19,
+      0,
+      "LATENT"
+    ],
+    [
+      37,
+      19,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      47,
+      7,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      48,
+      22,
+      0,
+      24,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      49,
+      23,
+      0,
+      24,
+      1,
+      "IMAGE"
+    ],
+    [
+      51,
+      11,
+      0,
+      26,
+      0,
+      "IMAGE"
+    ],
+    [
+      52,
+      22,
+      0,
+      27,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      53,
+      26,
+      0,
+      27,
+      1,
+      "IMAGE"
+    ],
+    [
+      55,
+      15,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      56,
+      22,
+      0,
+      30,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      57,
+      29,
+      0,
+      30,
+      1,
+      "IMAGE"
+    ],
+    [
+      59,
+      19,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      60,
+      22,
+      0,
+      33,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      61,
+      32,
+      0,
+      33,
+      1,
+      "IMAGE"
+    ],
+    [
+      67,
+      35,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      68,
+      36,
+      0,
+      37,
+      1,
+      "IMAGE"
+    ],
+    [
+      69,
+      37,
+      0,
+      38,
+      0,
+      "IMAGE"
+    ],
+    [
+      70,
+      39,
+      0,
+      40,
+      0,
+      "STRING"
+    ],
+    [
+      71,
+      39,
+      0,
+      41,
+      0,
+      "STRING"
+    ],
+    [
+      72,
+      39,
+      0,
+      42,
+      0,
+      "STRING"
+    ],
+    [
+      73,
+      39,
+      0,
+      43,
+      0,
+      "STRING"
+    ],
+    [
+      74,
+      40,
+      0,
+      5,
+      3,
+      "STRING"
+    ],
+    [
+      75,
+      41,
+      0,
+      9,
+      3,
+      "STRING"
+    ],
+    [
+      76,
+      42,
+      0,
+      13,
+      3,
+      "STRING"
+    ],
+    [
+      77,
+      43,
+      0,
+      17,
+      3,
+      "STRING"
+    ],
+    [
+      83,
+      24,
+      0,
+      45,
+      0,
+      "IMAGE"
+    ],
+    [
+      84,
+      45,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      85,
+      45,
+      0,
+      35,
+      0,
+      "IMAGE"
+    ],
+    [
+      86,
+      27,
+      0,
+      46,
+      0,
+      "IMAGE"
+    ],
+    [
+      87,
+      46,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      88,
+      46,
+      0,
+      35,
+      1,
+      "IMAGE"
+    ],
+    [
+      89,
+      30,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ],
+    [
+      90,
+      47,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      91,
+      47,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      92,
+      33,
+      0,
+      48,
+      0,
+      "IMAGE"
+    ],
+    [
+      93,
+      48,
+      0,
+      34,
+      0,
+      "IMAGE"
+    ],
+    [
+      94,
+      48,
+      0,
+      36,
+      1,
+      "IMAGE"
+    ],
+    [
+      95,
+      4,
+      0,
+      49,
+      0,
+      "MODEL"
+    ],
+    [
+      97,
+      49,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      98,
+      49,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      99,
+      49,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      100,
+      49,
+      0,
+      18,
+      0,
+      "MODEL"
+    ],
+    [
+      101,
+      50,
+      0,
+      5,
+      5,
+      "INT"
+    ],
+    [
+      102,
+      50,
+      0,
+      9,
+      5,
+      "INT"
+    ],
+    [
+      103,
+      50,
+      0,
+      13,
+      5,
+      "INT"
+    ],
+    [
+      104,
+      50,
+      0,
+      17,
+      5,
+      "INT"
+    ],
+    [
+      105,
+      39,
+      0,
+      52,
+      0,
+      "STRING"
+    ],
+    [
+      106,
+      2,
+      0,
+      53,
+      0,
+      "CLIP"
+    ],
+    [
+      107,
+      3,
+      0,
+      53,
+      3,
+      "VAE"
+    ],
+    [
+      108,
+      52,
+      0,
+      53,
+      4,
+      "STRING"
+    ],
+    [
+      109,
+      50,
+      0,
+      53,
+      6,
+      "INT"
+    ],
+    [
+      110,
+      7,
+      0,
+      53,
+      1,
+      "IMAGE"
+    ],
+    [
+      112,
+      53,
+      0,
+      54,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      113,
+      53,
+      1,
+      54,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      114,
+      53,
+      2,
+      54,
+      3,
+      "LATENT"
+    ],
+    [
+      115,
+      54,
+      0,
+      55,
+      0,
+      "LATENT"
+    ],
+    [
+      116,
+      3,
+      0,
+      55,
+      1,
+      "VAE"
+    ],
+    [
+      117,
+      51,
+      0,
+      56,
+      0,
+      "BACKGROUND_REMOVAL"
+    ],
+    [
+      118,
+      55,
+      0,
+      56,
+      1,
+      "IMAGE"
+    ],
+    [
+      119,
+      56,
+      0,
+      57,
+      0,
+      "MASK"
+    ],
+    [
+      120,
+      55,
+      0,
+      58,
+      0,
+      "IMAGE"
+    ],
+    [
+      121,
+      57,
+      0,
+      58,
+      1,
+      "MASK"
+    ],
+    [
+      122,
+      58,
+      0,
+      59,
+      0,
+      "IMAGE"
+    ],
+    [
+      123,
+      39,
+      0,
+      60,
+      0,
+      "STRING"
+    ],
+    [
+      124,
+      2,
+      0,
+      61,
+      0,
+      "CLIP"
+    ],
+    [
+      125,
+      3,
+      0,
+      61,
+      3,
+      "VAE"
+    ],
+    [
+      126,
+      60,
+      0,
+      61,
+      4,
+      "STRING"
+    ],
+    [
+      127,
+      50,
+      0,
+      61,
+      6,
+      "INT"
+    ],
+    [
+      128,
+      7,
+      0,
+      61,
+      1,
+      "IMAGE"
+    ],
+    [
+      131,
+      61,
+      0,
+      62,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      132,
+      61,
+      1,
+      62,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      133,
+      61,
+      2,
+      62,
+      3,
+      "LATENT"
+    ],
+    [
+      134,
+      62,
+      0,
+      63,
+      0,
+      "LATENT"
+    ],
+    [
+      135,
+      3,
+      0,
+      63,
+      1,
+      "VAE"
+    ],
+    [
+      136,
+      51,
+      0,
+      64,
+      0,
+      "BACKGROUND_REMOVAL"
+    ],
+    [
+      137,
+      63,
+      0,
+      64,
+      1,
+      "IMAGE"
+    ],
+    [
+      138,
+      64,
+      0,
+      65,
+      0,
+      "MASK"
+    ],
+    [
+      139,
+      63,
+      0,
+      66,
+      0,
+      "IMAGE"
+    ],
+    [
+      140,
+      65,
+      0,
+      66,
+      1,
+      "MASK"
+    ],
+    [
+      141,
+      66,
+      0,
+      67,
+      0,
+      "IMAGE"
+    ],
+    [
+      142,
+      39,
+      0,
+      68,
+      0,
+      "STRING"
+    ],
+    [
+      143,
+      2,
+      0,
+      69,
+      0,
+      "CLIP"
+    ],
+    [
+      144,
+      3,
+      0,
+      69,
+      3,
+      "VAE"
+    ],
+    [
+      145,
+      68,
+      0,
+      69,
+      4,
+      "STRING"
+    ],
+    [
+      146,
+      50,
+      0,
+      69,
+      6,
+      "INT"
+    ],
+    [
+      147,
+      7,
+      0,
+      69,
+      1,
+      "IMAGE"
+    ],
+    [
+      150,
+      69,
+      0,
+      70,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      151,
+      69,
+      1,
+      70,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      152,
+      69,
+      2,
+      70,
+      3,
+      "LATENT"
+    ],
+    [
+      153,
+      70,
+      0,
+      71,
+      0,
+      "LATENT"
+    ],
+    [
+      154,
+      3,
+      0,
+      71,
+      1,
+      "VAE"
+    ],
+    [
+      155,
+      51,
+      0,
+      72,
+      0,
+      "BACKGROUND_REMOVAL"
+    ],
+    [
+      156,
+      71,
+      0,
+      72,
+      1,
+      "IMAGE"
+    ],
+    [
+      157,
+      72,
+      0,
+      73,
+      0,
+      "MASK"
+    ],
+    [
+      158,
+      71,
+      0,
+      74,
+      0,
+      "IMAGE"
+    ],
+    [
+      159,
+      73,
+      0,
+      74,
+      1,
+      "MASK"
+    ],
+    [
+      160,
+      74,
+      0,
+      75,
+      0,
+      "IMAGE"
+    ],
+    [
+      161,
+      39,
+      0,
+      76,
+      0,
+      "STRING"
+    ],
+    [
+      162,
+      2,
+      0,
+      77,
+      0,
+      "CLIP"
+    ],
+    [
+      163,
+      3,
+      0,
+      77,
+      3,
+      "VAE"
+    ],
+    [
+      164,
+      76,
+      0,
+      77,
+      4,
+      "STRING"
+    ],
+    [
+      165,
+      50,
+      0,
+      77,
+      6,
+      "INT"
+    ],
+    [
+      166,
+      7,
+      0,
+      77,
+      1,
+      "IMAGE"
+    ],
+    [
+      169,
+      77,
+      0,
+      78,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      170,
+      77,
+      1,
+      78,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      171,
+      77,
+      2,
+      78,
+      3,
+      "LATENT"
+    ],
+    [
+      172,
+      78,
+      0,
+      79,
+      0,
+      "LATENT"
+    ],
+    [
+      173,
+      3,
+      0,
+      79,
+      1,
+      "VAE"
+    ],
+    [
+      174,
+      51,
+      0,
+      80,
+      0,
+      "BACKGROUND_REMOVAL"
+    ],
+    [
+      175,
+      79,
+      0,
+      80,
+      1,
+      "IMAGE"
+    ],
+    [
+      176,
+      80,
+      0,
+      81,
+      0,
+      "MASK"
+    ],
+    [
+      177,
+      79,
+      0,
+      82,
+      0,
+      "IMAGE"
+    ],
+    [
+      178,
+      81,
+      0,
+      82,
+      1,
+      "MASK"
+    ],
+    [
+      179,
+      82,
+      0,
+      83,
+      0,
+      "IMAGE"
+    ],
+    [
+      180,
+      4,
+      0,
+      54,
+      0,
+      "MODEL"
+    ],
+    [
+      181,
+      4,
+      0,
+      62,
+      0,
+      "MODEL"
+    ],
+    [
+      182,
+      4,
+      0,
+      70,
+      0,
+      "MODEL"
+    ],
+    [
+      183,
+      4,
+      0,
+      78,
+      0,
+      "MODEL"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "00 — MODELS (Qwen-Image 2.1)",
+      "bounding": [
+        0,
+        0,
+        785.0738891601562,
+        1022
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "01 — LORA STACK [bypass to disable]",
+      "bounding": [
+        0,
+        1122,
+        549.2912963867187,
+        316
+      ],
+      "color": "#4f9d69",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "02 — THREE-VIEW TURNAROUND",
+      "bounding": [
+        1546.1260498046875,
+        0,
+        1379.9500122070312,
+        486
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "03 — EXPRESSION SHEET [bypass to disable]",
+      "bounding": [
+        1546.1260498046875,
+        586,
+        1456.0521606445313,
+        486
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "04 — POSE SHEET [bypass to disable]",
+      "bounding": [
+        1546.1260498046875,
+        1172,
+        1405.7043518066407,
+        486
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "05 — COSTUME SHEET [bypass to disable]",
+      "bounding": [
+        1546.1260498046875,
+        1758,
+        1439.0521606445313,
+        486
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "06 — SUPERSCALING x2 (ESRGAN x4 + 0.5 lanczos) + FINAL SHEET [bypass to disable]",
+      "bounding": [
+        3102.1782104492186,
+        0,
+        1709.2333374023438,
+        2586
+      ],
+      "color": "#b58b2a",
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "CHARACTER CARD — one text box drives all four sheets",
+      "bounding": [
+        885.0738891601562,
+        0,
+        561.0521606445312,
+        2244
+      ],
+      "color": "#a1309b",
+      "flags": {}
+    },
+    {
+      "id": 9,
+      "title": "07 — 3D RECONSTRUCTION VIEWS (Pixal3D front / left / back / right, RGBA) [BYPASSED by default — select group, Ctrl-B to enable]",
+      "bounding": [
+        1546.1260498046875,
+        2686,
+        2929.9500122070312,
+        1754
+      ],
+      "color": "#88A",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "ds": {
+      "scale": 1.44153897629368,
+      "offset": [
+        317.64653527713165,
+        -124.01427988931897
+      ]
+    }
+  },
+  "version": 0.4
+}

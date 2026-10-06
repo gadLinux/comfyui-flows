@@ -1,0 +1,855 @@
+{
+  "last_node_id": 13,
+  "last_link_id": 16,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImageTextDataSetFromFolder",
+      "pos": [
+        900,
+        114
+      ],
+      "size": [
+        420,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "folder",
+          "type": "COMBO",
+          "widget": {
+            "name": "folder"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "texts",
+          "type": "STRING",
+          "links": [
+            13
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImageTextDataSetFromFolder"
+      },
+      "widgets_values": [
+        "lora/ale"
+      ],
+      "title": "PHOTOS FOLDER — ComfyUI input/lora/<name>/ (optional .txt caption per photo)"
+    },
+    {
+      "id": 2,
+      "type": "AutoCropFaces",
+      "pos": [
+        1540,
+        114
+      ],
+      "size": [
+        360,
+        236
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1
+        },
+        {
+          "name": "number_of_faces",
+          "type": "INT",
+          "widget": {
+            "name": "number_of_faces"
+          },
+          "link": null
+        },
+        {
+          "name": "scale_factor",
+          "type": "FLOAT",
+          "widget": {
+            "name": "scale_factor"
+          },
+          "link": null
+        },
+        {
+          "name": "shift_factor",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift_factor"
+          },
+          "link": null
+        },
+        {
+          "name": "start_index",
+          "type": "INT",
+          "widget": {
+            "name": "start_index"
+          },
+          "link": null
+        },
+        {
+          "name": "max_faces_per_image",
+          "type": "INT",
+          "widget": {
+            "name": "max_faces_per_image"
+          },
+          "link": null
+        },
+        {
+          "name": "aspect_ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "aspect_ratio"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "face",
+          "type": "IMAGE",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "1",
+          "type": "CROP_DATA",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AutoCropFaces"
+      },
+      "widgets_values": [
+        1,
+        3,
+        0.45,
+        0,
+        1,
+        "1:1"
+      ],
+      "title": "FACE CROP — only for wide / full-body photos (crops close-up selfies too tight)"
+    },
+    {
+      "id": 3,
+      "type": "ResizeImagesByShorterEdge",
+      "pos": [
+        2120,
+        114
+      ],
+      "size": [
+        360,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "shorter_edge",
+          "type": "INT",
+          "widget": {
+            "name": "shorter_edge"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResizeImagesByShorterEdge"
+      },
+      "widgets_values": [
+        1032
+      ],
+      "title": "Resize — shorter edge = training res + 8 (crop margin)"
+    },
+    {
+      "id": 4,
+      "type": "CenterCropImages",
+      "pos": [
+        2120,
+        266
+      ],
+      "size": [
+        360,
+        106
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            4,
+            6,
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CenterCropImages"
+      },
+      "widgets_values": [
+        1024,
+        1024
+      ],
+      "title": "Center crop to training resolution (square)"
+    },
+    {
+      "id": 5,
+      "type": "StringConcatenate",
+      "pos": [
+        2700,
+        114
+      ],
+      "size": [
+        400,
+        160
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": 13
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            15,
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "Node name for S&R": "StringConcatenate"
+      },
+      "widgets_values": [
+        "aleface person",
+        "",
+        ", "
+      ],
+      "title": "TRIGGER + caption — edit string_a (the trigger word)"
+    },
+    {
+      "id": 7,
+      "type": "SaveImageTextDataSetToFolder",
+      "pos": [
+        3320,
+        114
+      ],
+      "size": [
+        420,
+        158
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "folder_name",
+          "type": "STRING",
+          "widget": {
+            "name": "folder_name"
+          },
+          "link": null
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        },
+        {
+          "name": "mode",
+          "type": "COMBO",
+          "widget": {
+            "name": "mode"
+          },
+          "link": null
+        },
+        {
+          "name": "texts",
+          "type": "STRING",
+          "link": 15
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImageTextDataSetToFolder"
+      },
+      "widgets_values": [
+        "lora_datasets/ale",
+        "ale",
+        "overwrite"
+      ],
+      "title": "EXPORT — output/lora_datasets/<name>/ (png + txt pairs)"
+    },
+    {
+      "id": 8,
+      "type": "PreviewImage",
+      "pos": [
+        3320,
+        342
+      ],
+      "size": [
+        420,
+        420
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "title": "Preview — training crops"
+    },
+    {
+      "id": 9,
+      "type": "CLIPLoader",
+      "pos": [
+        3960,
+        114
+      ],
+      "size": [
+        460,
+        130
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          },
+          "link": null
+        },
+        {
+          "name": "type",
+          "type": "COMBO",
+          "widget": {
+            "name": "type"
+          },
+          "link": null
+        },
+        {
+          "name": "device",
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen3vl_8b_ablit_int8.safetensors",
+        "qwen_image",
+        "default"
+      ],
+      "title": "Text encoder (Qwen 2.1) — for the ComfyUI cache only"
+    },
+    {
+      "id": 10,
+      "type": "VAELoader",
+      "pos": [
+        3960,
+        314
+      ],
+      "size": [
+        420,
+        82
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "qwen_image_2.1_vae_bf16.safetensors"
+      ],
+      "title": "VAE (Qwen 2.1) — for the ComfyUI cache only"
+    },
+    {
+      "id": 11,
+      "type": "MakeTrainingDataset",
+      "pos": [
+        4480,
+        114
+      ],
+      "size": [
+        360,
+        100
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 8
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 9
+        },
+        {
+          "name": "texts",
+          "type": "STRING",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latents",
+          "type": "LATENT",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "links": [
+            12
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MakeTrainingDataset"
+      },
+      "widgets_values": [],
+      "title": "Encode once — latents + caption conditioning"
+    },
+    {
+      "id": 12,
+      "type": "SaveTrainingDataset",
+      "pos": [
+        4480,
+        284
+      ],
+      "size": [
+        420,
+        106
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "latents",
+          "type": "LATENT",
+          "link": 11
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 12
+        },
+        {
+          "name": "folder_name",
+          "type": "STRING",
+          "widget": {
+            "name": "folder_name"
+          },
+          "link": null
+        },
+        {
+          "name": "shard_size",
+          "type": "INT",
+          "widget": {
+            "name": "shard_size"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveTrainingDataset"
+      },
+      "widgets_values": [
+        "lora/ale_1024",
+        1000
+      ],
+      "title": "COMFY CACHE — ComfyUI/datasets/lora/<name>_<res>"
+    },
+    {
+      "id": 13,
+      "type": "MarkdownNote",
+      "pos": [
+        60,
+        114
+      ],
+      "size": [
+        620,
+        420
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "MODEL & LoRA LINKS",
+      "properties": {},
+      "widgets_values": [
+        "# MODEL & LoRA LINKS\n\nOnly group **05 COMFY CACHE** loads models (to encode the dataset for ComfyUI's own trainer).\nGroups 00-04 (crop, resize, caption, export) use no model at all; AutoCropFaces downloads its\nRetinaFace weights itself.\n\n| models/ | file | download | page |\n|---|---|---|---|\n| text_encoders | qwen3vl_8b_ablit_int8.safetensors | _source not recorded yet; fill in_ | — |\n| vae | qwen_image_2.1_vae_bf16.safetensors | [file](https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/vae/qwen_image_2.1_vae_bf16.safetensors) | [Comfy-Org/Qwen-Image-2.1](https://huggingface.co/Comfy-Org/Qwen-Image-2.1) |\n\nThe LoRA this dataset trains is meant for `qwen-image-2.1-UC-Q8_0.gguf` (slot 4 in the Character flows).\nDownloads go on the host only (`~/git/civitai_dl.sh` for CivitAI files)."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      4,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      4,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      4,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      8,
+      10,
+      0,
+      11,
+      1,
+      "VAE"
+    ],
+    [
+      9,
+      9,
+      0,
+      11,
+      2,
+      "CLIP"
+    ],
+    [
+      11,
+      11,
+      0,
+      12,
+      0,
+      "LATENT"
+    ],
+    [
+      12,
+      11,
+      1,
+      12,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      13,
+      1,
+      1,
+      5,
+      1,
+      "STRING"
+    ],
+    [
+      15,
+      5,
+      0,
+      7,
+      4,
+      "STRING"
+    ],
+    [
+      16,
+      5,
+      0,
+      11,
+      3,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "MODEL & LoRA LINKS (read me first)",
+      "bounding": [
+        0,
+        0,
+        740,
+        584
+      ],
+      "color": "#b58b2a",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "00 — SOURCE: photos folder (input/lora/<name>/)",
+      "bounding": [
+        840,
+        0,
+        540,
+        270
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "01 — FACE CROP, for wide / full-body photos [BYPASSED — Ctrl-B to enable]",
+      "bounding": [
+        1480,
+        0,
+        480,
+        400
+      ],
+      "color": "#a1309b",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "02 — SIZE: training resolution",
+      "bounding": [
+        2060,
+        0,
+        480,
+        422
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "03 — CAPTIONS: trigger word",
+      "bounding": [
+        2640,
+        0,
+        520,
+        422
+      ],
+      "color": "#4f9d69",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "04 — EXPORT: png + txt pairs for ai-toolkit / kohya / musubi",
+      "bounding": [
+        3260,
+        0,
+        540,
+        812
+      ],
+      "color": "#b58b2a",
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "05 — COMFY CACHE: encoded dataset for ComfyUI's trainer [BYPASSED — Ctrl-B to enable]",
+      "bounding": [
+        3900,
+        0,
+        1060,
+        446
+      ],
+      "color": "#88A",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

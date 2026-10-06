@@ -1,0 +1,440 @@
+{
+  "id": "4c6764ad-6d12-52ba-9273-efd04c2146c3",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "668e4421-31cb-57c0-b2ff-031aeae5a4ae",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        142
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "clip_name"
+          }
+        },
+        {
+          "localized_name": "clip_device",
+          "name": "clip_device",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "clip_device"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": []
+        },
+        {
+          "localized_name": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": []
+        },
+        {
+          "localized_name": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": []
+        }
+      ],
+      "title": "Qwen 2.1 models — GGUF Q8 + Qwen3-VL TE + 2.1 VAE",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "clip_name"
+          ],
+          [
+            "-1",
+            "clip_device"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "qwen3vl_8b_ablit_int8.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_8b_ablit_int8.safetensors",
+        "clip_device": "default"
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "668e4421-31cb-57c0-b2ff-031aeae5a4ae",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 3,
+          "lastLinkId": 5,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Qwen 2.1 models — GGUF Q8 + Qwen3-VL TE + 2.1 VAE",
+        "description": "UnetLoaderGGUF qwen-image-2.1-UC-Q8_0 + CLIPLoader (qwen_image) + VAELoader qwen_image_2.1_vae_bf16. TorchCompile and the LoRA slot stay outside so they remain bypassable.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            80
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            785.0738891601562,
+            0,
+            140,
+            100
+          ]
+        },
+        "inputs": [
+          {
+            "id": "14d4f158-43ab-5e35-93ca-3a33f2368ab6",
+            "name": "clip_name",
+            "type": "COMBO",
+            "linkIds": [
+              1
+            ],
+            "localized_name": "clip_name",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "98ed142f-8e7f-5b85-af3d-610265d5ca80",
+            "name": "clip_device",
+            "type": "COMBO",
+            "linkIds": [
+              2
+            ],
+            "localized_name": "clip_device",
+            "pos": [
+              -300,
+              40
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "a6ce6de6-d0cd-5285-aa6e-ec3e6fd455bf",
+            "name": "MODEL",
+            "type": "MODEL",
+            "linkIds": [
+              3
+            ],
+            "localized_name": "MODEL",
+            "pos": [
+              805.0738891601562,
+              20
+            ]
+          },
+          {
+            "id": "8bce6e9b-a128-5928-ac3b-6597ab4fb5b3",
+            "name": "CLIP",
+            "type": "CLIP",
+            "linkIds": [
+              4
+            ],
+            "localized_name": "CLIP",
+            "pos": [
+              805.0738891601562,
+              40
+            ]
+          },
+          {
+            "id": "02bf8f97-099c-541b-bd5c-60312f03c8f0",
+            "name": "VAE",
+            "type": "VAE",
+            "linkIds": [
+              5
+            ],
+            "localized_name": "VAE",
+            "pos": [
+              805.0738891601562,
+              60
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "UnetLoaderGGUF",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              508.421728515625,
+              106
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "unet_name",
+                "name": "unet_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "unet_name"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "MODEL",
+                "name": "MODEL",
+                "type": "MODEL",
+                "slot_index": 0,
+                "links": [
+                  3
+                ]
+              }
+            ],
+            "title": "Diffusion model (Qwen-Image 2.1 GGUF)",
+            "properties": {
+              "aux_id": "leejet/ComfyUI-GGUF",
+              "ver": "373048b8403a7820620065210a691263d4da0a61",
+              "Node name for S&R": "UnetLoaderGGUF",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "unet_name": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "qwen-image-2.1-UC-Q8_0.gguf"
+            ],
+            "widgets_values_named": {
+              "unet_name": "qwen-image-2.1-UC-Q8_0.gguf"
+            }
+          },
+          {
+            "id": 2,
+            "type": "CLIPLoader",
+            "pos": [
+              0,
+              216
+            ],
+            "size": [
+              665.0738891601562,
+              158
+            ],
+            "flags": {},
+            "mode": 0,
+            "showAdvanced": true,
+            "inputs": [
+              {
+                "localized_name": "clip_name",
+                "name": "clip_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "clip_name"
+                },
+                "link": 1
+              },
+              {
+                "localized_name": "type",
+                "name": "type",
+                "type": "COMBO",
+                "widget": {
+                  "name": "type"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "device",
+                "name": "device",
+                "shape": 7,
+                "type": "COMBO",
+                "widget": {
+                  "name": "device"
+                },
+                "link": 2
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CLIP",
+                "name": "CLIP",
+                "type": "CLIP",
+                "slot_index": 0,
+                "links": [
+                  4
+                ]
+              }
+            ],
+            "title": "Text encoder (Qwen3-VL 8B int8) — device cpu: GPU HIP int8 kernel gives NaN on some prompts",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "CLIPLoader",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "clip_name": true,
+                  "type": true,
+                  "device": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "qwen3vl_8b_ablit_int8.safetensors",
+              "qwen_image",
+              "default"
+            ],
+            "widgets_values_named": {
+              "clip_name": "qwen3vl_8b_ablit_int8.safetensors",
+              "type": "qwen_image",
+              "device": "default"
+            }
+          },
+          {
+            "id": 3,
+            "type": "VAELoader",
+            "pos": [
+              0,
+              484
+            ],
+            "size": [
+              280,
+              106
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "vae_name",
+                "name": "vae_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "vae_name"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "VAE",
+                "name": "VAE",
+                "type": "VAE",
+                "slot_index": 0,
+                "links": [
+                  5
+                ]
+              }
+            ],
+            "title": "VAE",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "VAELoader",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "vae_name": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "qwen_image_2.1_vae_bf16.safetensors"
+            ],
+            "widgets_values_named": {
+              "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "COMBO"
+          },
+          {
+            "id": 2,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 2,
+            "target_slot": 2,
+            "type": "COMBO"
+          },
+          {
+            "id": 3,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 4,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 1,
+            "type": "CLIP"
+          },
+          {
+            "id": 5,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 2,
+            "type": "VAE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "qwen21-uc-models",
+      "id": "668e4421-31cb-57c0-b2ff-031aeae5a4ae"
+    }
+  },
+  "version": 0.4
+}

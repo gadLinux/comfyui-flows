@@ -1,0 +1,450 @@
+{
+  "id": "0c0ba55b-e830-56ae-8632-2aba1046fef4",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "fb6e0c6f-8ed1-5962-bc75-72445e6b8944",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        142
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "bg_model",
+          "name": "bg_model",
+          "type": "BACKGROUND_REMOVAL",
+          "link": null
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "RGBA cutout — BiRefNet → transparent PNG",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "filename_prefix"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "Character/x_rgba"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/x_rgba"
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "fb6e0c6f-8ed1-5962-bc75-72445e6b8944",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 4,
+          "lastLinkId": 8,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "RGBA cutout — BiRefNet → transparent PNG",
+        "description": "RemoveBackground → InvertMask → JoinImageWithAlpha → SaveImage. Background model passed in.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            100
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1534.5739196777345,
+            0,
+            140,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "3a4f58b1-3d6a-5683-98ec-23e239fecc7e",
+            "name": "image",
+            "type": "IMAGE",
+            "linkIds": [
+              4,
+              5
+            ],
+            "localized_name": "image",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "7a55cad7-c729-5857-8554-afd366204f14",
+            "name": "bg_model",
+            "type": "BACKGROUND_REMOVAL",
+            "linkIds": [
+              6
+            ],
+            "localized_name": "bg_model",
+            "pos": [
+              -300,
+              40
+            ]
+          },
+          {
+            "id": "81b91c69-841e-5be0-aab5-10be7f11cec0",
+            "name": "filename_prefix",
+            "type": "STRING",
+            "linkIds": [
+              7
+            ],
+            "localized_name": "filename_prefix",
+            "pos": [
+              -300,
+              60
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "6432166f-52a8-5e38-a86b-34c4622385f9",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              8
+            ],
+            "localized_name": "IMAGE",
+            "pos": [
+              1554.5739196777345,
+              20
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "RemoveBackground",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              280,
+              80
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "bg_removal_model",
+                "name": "bg_removal_model",
+                "type": "BACKGROUND_REMOVAL",
+                "link": 6
+              },
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 4
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "type": "MASK",
+                "slot_index": 0,
+                "links": [
+                  1
+                ]
+              }
+            ],
+            "title": "Foreground mask (BiRefNet)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "RemoveBackground",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 2,
+            "type": "InvertMask",
+            "pos": [
+              360,
+              0
+            ],
+            "size": [
+              334.57391967773435,
+              80
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "type": "MASK",
+                "link": 1
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "MASK",
+                "name": "MASK",
+                "type": "MASK",
+                "slot_index": 0,
+                "links": [
+                  2
+                ]
+              }
+            ],
+            "title": "Invert (JoinImageWithAlpha: 1 = transparent)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "InvertMask",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 3,
+            "type": "JoinImageWithAlpha",
+            "pos": [
+              774.5739196777344,
+              0
+            ],
+            "size": [
+              280,
+              80
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 5
+              },
+              {
+                "localized_name": "alpha",
+                "name": "alpha",
+                "type": "MASK",
+                "link": 2
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  3,
+                  8
+                ]
+              }
+            ],
+            "title": "RGBA",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "JoinImageWithAlpha",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 4,
+            "type": "SaveImage",
+            "pos": [
+              1134.5739196777345,
+              0
+            ],
+            "size": [
+              280,
+              302
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "link": 3
+              },
+              {
+                "localized_name": "filename_prefix",
+                "name": "filename_prefix",
+                "type": "STRING",
+                "widget": {
+                  "name": "filename_prefix"
+                },
+                "link": 7
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": []
+              }
+            ],
+            "title": "Save RGBA",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "SaveImage",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "filename_prefix": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "Character/x"
+            ],
+            "widgets_values_named": {
+              "filename_prefix": "Character/x"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "MASK"
+          },
+          {
+            "id": 2,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": 3,
+            "target_slot": 1,
+            "type": "MASK"
+          },
+          {
+            "id": 3,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": 4,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 4,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 5,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 3,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 6,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 1,
+            "target_slot": 0,
+            "type": "BACKGROUND_REMOVAL"
+          },
+          {
+            "id": 7,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 4,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 8,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "rgba-cutout",
+      "id": "fb6e0c6f-8ed1-5962-bc75-72445e6b8944"
+    }
+  },
+  "version": 0.4
+}

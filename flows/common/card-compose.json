@@ -1,0 +1,274 @@
+{
+  "id": "0585b1e2-798b-5c5a-b8bd-bb8775608196",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "c0783170-c30f-5420-8f31-2bba852ce66d",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        142
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "card",
+          "name": "card",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "card"
+          }
+        },
+        {
+          "localized_name": "template",
+          "name": "template",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "template"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "title": "Card compose — card + template → prompt",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "card"
+          ],
+          [
+            "-1",
+            "template"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "",
+        ""
+      ],
+      "widgets_values_named": {
+        "card": "",
+        "template": ""
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "c0783170-c30f-5420-8f31-2bba852ce66d",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 1,
+          "lastLinkId": 3,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Card compose — card + template → prompt",
+        "description": "StringConcatenate(card, template, \"\\n\\n\"): card first, then the character-neutral template.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            80
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            560,
+            0,
+            140,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "0a527871-c39d-57af-a330-2be556c92b90",
+            "name": "card",
+            "type": "STRING",
+            "linkIds": [
+              1
+            ],
+            "localized_name": "card",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "a9c0ce4d-508c-5e40-8a4e-0f1936d86e09",
+            "name": "template",
+            "type": "STRING",
+            "linkIds": [
+              2
+            ],
+            "localized_name": "template",
+            "pos": [
+              -300,
+              40
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "1c3763cd-a50c-52b3-a713-875b40234554",
+            "name": "STRING",
+            "type": "STRING",
+            "linkIds": [
+              3
+            ],
+            "localized_name": "STRING",
+            "pos": [
+              580,
+              20
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "StringConcatenate",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              440,
+              240
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 1
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 2
+              },
+              {
+                "localized_name": "delimiter",
+                "name": "delimiter",
+                "type": "STRING",
+                "widget": {
+                  "name": "delimiter"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "slot_index": 0,
+                "links": [
+                  3
+                ]
+              }
+            ],
+            "title": "Compose prompt (card + template)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "StringConcatenate",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "string_a": true,
+                  "string_b": true,
+                  "delimiter": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "",
+              "",
+              "\n\n"
+            ],
+            "widgets_values_named": {
+              "string_a": "",
+              "string_b": "",
+              "delimiter": "\n\n"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 2,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 1,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 3,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "STRING"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "card-compose",
+      "id": "c0783170-c30f-5420-8f31-2bba852ce66d"
+    }
+  },
+  "version": 0.4
+}

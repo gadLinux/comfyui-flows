@@ -1,0 +1,383 @@
+{
+  "id": "aa162716-f30d-5366-9446-bdf2870ea989",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "59f90e79-ada6-558f-8d8c-e0f6bbb8309b",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        142
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "upscale_model",
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": null
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "ESRGAN x4 → save",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "filename_prefix"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "Character/x_x4"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Character/x_x4"
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "59f90e79-ada6-558f-8d8c-e0f6bbb8309b",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 3,
+          "lastLinkId": 6,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "ESRGAN x4 → save",
+        "description": "ImageRemoveAlpha+ → ImageUpscaleWithModel → SaveImage. Full x4, no resampling pass.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            100
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1120,
+            0,
+            140,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "37eed628-be4f-5dfa-b496-5452eda51f28",
+            "name": "image",
+            "type": "IMAGE",
+            "linkIds": [
+              3
+            ],
+            "localized_name": "image",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "393869ba-09ae-584c-9343-fef23e0ef04a",
+            "name": "upscale_model",
+            "type": "UPSCALE_MODEL",
+            "linkIds": [
+              4
+            ],
+            "localized_name": "upscale_model",
+            "pos": [
+              -300,
+              40
+            ]
+          },
+          {
+            "id": "037c58e8-04e1-53dd-b330-f3ea74bc9ef0",
+            "name": "filename_prefix",
+            "type": "STRING",
+            "linkIds": [
+              5
+            ],
+            "localized_name": "filename_prefix",
+            "pos": [
+              -300,
+              60
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "7558cde2-9b42-5e24-b0f3-5a223a7ccb76",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              6
+            ],
+            "localized_name": "IMAGE",
+            "pos": [
+              1140,
+              20
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "ImageRemoveAlpha+",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              280,
+              80
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 3
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  1
+                ]
+              }
+            ],
+            "title": "RGB for ESRGAN",
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "1.1.0",
+              "Node name for S&R": "ImageRemoveAlpha+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 2,
+            "type": "ImageUpscaleWithModel",
+            "pos": [
+              360,
+              0
+            ],
+            "size": [
+              280,
+              80
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "upscale_model",
+                "name": "upscale_model",
+                "type": "UPSCALE_MODEL",
+                "link": 4
+              },
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 1
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  2,
+                  6
+                ]
+              }
+            ],
+            "title": "ESRGAN x4",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "ImageUpscaleWithModel",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 3,
+            "type": "SaveImage",
+            "pos": [
+              720,
+              0
+            ],
+            "size": [
+              280,
+              302
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "link": 2
+              },
+              {
+                "localized_name": "filename_prefix",
+                "name": "filename_prefix",
+                "type": "STRING",
+                "widget": {
+                  "name": "filename_prefix"
+                },
+                "link": 5
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": []
+              }
+            ],
+            "title": "Save x4",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "SaveImage",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "filename_prefix": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "Character/x"
+            ],
+            "widgets_values_named": {
+              "filename_prefix": "Character/x"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 2,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": 3,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 4,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "UPSCALE_MODEL"
+          },
+          {
+            "id": 5,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 3,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 6,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "esrgan-x4",
+      "id": "59f90e79-ada6-558f-8d8c-e0f6bbb8309b"
+    }
+  },
+  "version": 0.4
+}

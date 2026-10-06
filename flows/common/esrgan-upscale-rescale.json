@@ -1,0 +1,486 @@
+{
+  "id": "a4c9dc46-eac0-5c3f-98ac-df225ea080d0",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "5f0f5031-7c4a-5867-9b70-ca9d48c8069a",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        380,
+        190
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "upscale_model",
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": null
+        },
+        {
+          "localized_name": "scale_by",
+          "name": "scale_by",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "scale_by"
+          }
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "ESRGAN x4 → rescale → save",
+      "properties": {
+        "proxyWidgets": [
+          [
+            "-1",
+            "scale_by"
+          ],
+          [
+            "-1",
+            "filename_prefix"
+          ]
+        ],
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        0.5,
+        "Character/x_x2"
+      ],
+      "widgets_values_named": {
+        "scale_by": 0.5,
+        "filename_prefix": "Character/x_x2"
+      }
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "5f0f5031-7c4a-5867-9b70-ca9d48c8069a",
+        "version": 1,
+        "state": {
+          "lastGroupId": 0,
+          "lastNodeId": 4,
+          "lastLinkId": 8,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "ESRGAN x4 → rescale → save",
+        "description": "ImageRemoveAlpha+ → ImageUpscaleWithModel → ImageScaleBy (lanczos) → SaveImage. scale_by 0.5 = net x2.",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -400,
+            0,
+            140,
+            120
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1480,
+            0,
+            140,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "a4be50ee-475e-556c-baed-f6e42571b85d",
+            "name": "image",
+            "type": "IMAGE",
+            "linkIds": [
+              4
+            ],
+            "localized_name": "image",
+            "pos": [
+              -300,
+              20
+            ]
+          },
+          {
+            "id": "02c9b2fe-7a6e-582c-9c5f-6d06f246fc57",
+            "name": "upscale_model",
+            "type": "UPSCALE_MODEL",
+            "linkIds": [
+              5
+            ],
+            "localized_name": "upscale_model",
+            "pos": [
+              -300,
+              40
+            ]
+          },
+          {
+            "id": "152e37af-93e7-5531-9ce1-3ff953176a30",
+            "name": "scale_by",
+            "type": "FLOAT",
+            "linkIds": [
+              6
+            ],
+            "localized_name": "scale_by",
+            "pos": [
+              -300,
+              60
+            ]
+          },
+          {
+            "id": "f722832b-4753-5e42-b548-b892fd50309f",
+            "name": "filename_prefix",
+            "type": "STRING",
+            "linkIds": [
+              7
+            ],
+            "localized_name": "filename_prefix",
+            "pos": [
+              -300,
+              80
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "67cbd534-a4f7-5cfd-8d02-40649311ad23",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              8
+            ],
+            "localized_name": "IMAGE",
+            "pos": [
+              1500,
+              20
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1,
+            "type": "ImageRemoveAlpha+",
+            "pos": [
+              0,
+              0
+            ],
+            "size": [
+              280,
+              80
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 4
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  1
+                ]
+              }
+            ],
+            "title": "RGB for ESRGAN — Three-View",
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "1.1.0",
+              "Node name for S&R": "ImageRemoveAlpha+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 2,
+            "type": "ImageUpscaleWithModel",
+            "pos": [
+              360,
+              0
+            ],
+            "size": [
+              280,
+              80
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "upscale_model",
+                "name": "upscale_model",
+                "type": "UPSCALE_MODEL",
+                "link": 5
+              },
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 1
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": [
+                  2
+                ]
+              }
+            ],
+            "title": "x4 — Three-View",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "ImageUpscaleWithModel",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 3,
+            "type": "ImageScaleBy",
+            "pos": [
+              720,
+              0
+            ],
+            "size": [
+              280,
+              132
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "image",
+                "type": "IMAGE",
+                "link": 2
+              },
+              {
+                "name": "upscale_method",
+                "type": "COMBO",
+                "widget": {
+                  "name": "upscale_method"
+                },
+                "link": null
+              },
+              {
+                "name": "scale_by",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "scale_by"
+                },
+                "link": 6
+              }
+            ],
+            "outputs": [
+              {
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  3,
+                  8
+                ],
+                "slot_index": 0
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "ImageScaleBy"
+            },
+            "widgets_values": [
+              "lanczos",
+              0.5
+            ],
+            "title": "0.5x (net x2) — Three-View",
+            "widgets_values_named": {
+              "upscale_method": "lanczos",
+              "scale_by": 0.5
+            }
+          },
+          {
+            "id": 4,
+            "type": "SaveImage",
+            "pos": [
+              1080,
+              0
+            ],
+            "size": [
+              280,
+              302
+            ],
+            "flags": {},
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "link": 3
+              },
+              {
+                "localized_name": "filename_prefix",
+                "name": "filename_prefix",
+                "type": "STRING",
+                "widget": {
+                  "name": "filename_prefix"
+                },
+                "link": 7
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "slot_index": 0,
+                "links": []
+              }
+            ],
+            "title": "Save x2 — Three-View",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.38.0",
+              "Node name for S&R": "SaveImage",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "filename_prefix": true
+                },
+                "version": "7.8",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "Character/kailani/three-view_x2"
+            ],
+            "widgets_values_named": {
+              "filename_prefix": "Character/kailani/three-view_x4"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": 1,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 2,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": 3,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": 4,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 4,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 5,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "UPSCALE_MODEL"
+          },
+          {
+            "id": 6,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 3,
+            "target_slot": 2,
+            "type": "FLOAT"
+          },
+          {
+            "id": 7,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 4,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 8,
+            "origin_id": 3,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "common_subgraph": {
+      "slug": "esrgan-upscale-rescale",
+      "id": "5f0f5031-7c4a-5867-9b70-ca9d48c8069a"
+    }
+  },
+  "version": 0.4
+}
